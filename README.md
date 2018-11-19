@@ -32,18 +32,36 @@
     - [ ] Authorization
     - [ ] Styling
     - [ ] Redux / Hooks / Redux + Hooks
-    - [ ] Connect with real backend
+    - [ ] Connect API
     - [ ] ...
     
  - [ ] List Suggestions
-    - [ ] List upvotes
-    - [ ] List supporters
+    - [ ] View Components
+    - [ ] Controllers
+    - [ ] API
+   
+  - [ ] List Votes
+    - [ ] Pagination (live-scroll)
+    - [ ] View Components - List
+    - [ ] Controller
+    - [ ] (optional) - Chart
+    - [ ] View Components - List
+    - [ ] Controller
     - [ ] Avatars & links to GitHub
- - [ ] Submit Suggestion
+  
+ - [ ] Vote / Remove Vote for Suggestion
+    - [ ] View Components - Vote / Remove Vote
+    - [ ] Controller
+    - [ ] Show Toast when preforming denied operation (not logged)
+    - [ ] Show Toast when preforming denied operation (voting down own suggestion)
+    - [ ] API; should be voted by the Submitter automatically
  
- - [ ] Upvote/downvote Suggestion
- 
- - [ ] Support/leave Suggestion
+ - [ ] Support/Leave Suggestion (Donate/Join/Attend)
+    - [ ] View Components - Support / Leave
+    - [ ] Controller
+    - [ ] Show Toast when preforming denied operation (not logged)
+    - [ ] Show Toast when preforming denied operation (cannot leave own)
+    - [ ] API; should be supported by the Submitter automatically
  
  # Roadmap - 1.1
  * Admin Panel - approve Suggestions
