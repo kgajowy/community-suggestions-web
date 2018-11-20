@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {SubmitForm} from './components/SubmitForm'
-import Suggestion from './suggestion'
+import Suggestion from '../shared/interfaces/suggestion'
 
 export default class SubmitSuggestion extends React.Component<{}, {}> {
     public onSubmit = (suggestion: Suggestion) => {

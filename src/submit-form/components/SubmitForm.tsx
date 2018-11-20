@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {FunctionComponent, useState} from 'react'
 import {Button} from '../../shared/components/Button'
-import Suggestion from '../suggestion'
+import Suggestion from '../../shared/interfaces/suggestion'
 import {SubmitDescription} from './SubmitDescription'
 import {SubmitName} from './SubmitName'
 
