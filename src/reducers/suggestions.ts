@@ -17,10 +17,17 @@ export const SuggestionsReducer = (state: SuggestionsState = initialState, actio
     switch (action.type) {
         case SuggestionActionTypes.Get:
             console.log(`>>> get action`)
-            return initialState
+            return {
+                ...initialState,
+                pending: true,
+            }
         case SuggestionActionTypes.Acquired:
             console.log(`>>> acquire action`)
-            return initialState
+            return {
+                ...initialState,
+                pending: false,
+                suggestions: action.payload!
+            }
         case SuggestionActionTypes.Error:
             console.log(`>>> error action`)
             return initialState
