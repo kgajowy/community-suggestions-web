@@ -1,38 +1,13 @@
 import * as React from 'react'
-import {useEffect, useReducer} from 'react'
-import {SuggestionsAcquired, SuggestionsError, SuggestionsGet} from '../actions/suggestions'
-import {initialState, SuggestionsReducer} from '../reducers/suggestions'
-import Suggestion from '../shared/interfaces/suggestion'
-import {getSuggestions} from '../shared/services/community-suggestions'
+import {Dispatch} from 'redux'
+import {SuggestionActions} from '../actions/suggestions'
+import {RootState} from '../reducers'
+import useRedux from '../shared/hooks/use-redux'
 import {Suggestions} from './components/Suggestions'
 
-interface CommunitySuggestionsProps {
-    suggestions: Suggestion[]
-}
-
 export const CommunitySuggestions: React.FunctionComponent<{}> = () => {
-    const [{pending, suggestions = [], error}, dispatch] = useReducer(
-        SuggestionsReducer,
-        initialState
-    )
-
-    // TODO move to 'effects'
-    // TODO add debounce?
-    useEffect(
-        () => {
-            if (pending) {
-                getSuggestions()
-                    .then(r => dispatch(SuggestionsAcquired(r)))
-                    .catch(e => dispatch(SuggestionsError(e)))
-            }
-            //const subscription = props.source.subscribe();
-            //return () => {
-            //    subscription.unsubscribe();
-            //};
-        },
-        [pending],
-    );
-
+    const [{suggestions: suggestionsState}, _]: [RootState, Dispatch<SuggestionActions>] = useRedux<SuggestionActions>()
+    const {error, pending, suggestions} = suggestionsState
     return (
         <>
             {pending && <>Loading...</>}

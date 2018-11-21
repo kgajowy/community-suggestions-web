@@ -1,31 +1,30 @@
 import React, {Component} from 'react'
+// @ts-ignore
+import {Provider} from 'react-redux'
 import {Normalize} from 'styled-normalize'
+import {Effects} from './Effects'
+import InitApp from './InitApp'
+import store from './store'
 import SubmitSuggestion from './submit-form/SubmitSuggestion'
 import {CommunitySuggestions} from './suggestions/CommunitySuggestions'
-import {CommunitySuggestionsTwo} from './suggestions/CommunitySuggestionsTwo'
 import {defaultTheme} from './theme/default-theme'
 import {ThemeProvider} from './theme/styled'
 
-// @ts-ignore
-import { Provider } from "react-redux";
-
-import store from "./store";
-
 class App extends Component {
     render() {
-        return (<>
+        return (<Provider store={store}>
+                <InitApp/>
+                <Effects/>
                 <Normalize/>
                 <ThemeProvider theme={defaultTheme}>
-                    <Provider store={store}>
+                    <>
                         <h1>Hello WarsawJS Community!</h1>
                         <SubmitSuggestion/>
-                        <h1>Community Suggestions Two:</h1>
-                        <CommunitySuggestionsTwo/>
                         <h1>Community Suggestions:</h1>
                         <CommunitySuggestions/>
-                    </Provider>
+                    </>
                 </ThemeProvider>
-            </>
+            </Provider>
         )
     }
 }
