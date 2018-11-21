@@ -1,7 +1,10 @@
 import * as React from 'react'
 import {useEffect, useReducer} from 'react'
-import {SuggestionsAcquired, SuggestionsError, SuggestionsGet} from '../actions/suggestions'
+import {Dispatch} from 'redux'
+import {SuggestionActions, SuggestionsAcquired, SuggestionsError, SuggestionsGet} from '../actions/suggestions'
+import {RootState} from '../reducers'
 import {initialState, SuggestionsReducer} from '../reducers/suggestions'
+import useRedux from '../shared/hooks/use-redux'
 import Suggestion from '../shared/interfaces/suggestion'
 import {getSuggestions} from '../shared/services/community-suggestions'
 import {Suggestions} from './components/Suggestions'
@@ -10,14 +13,16 @@ interface CommunitySuggestionsProps {
     suggestions: Suggestion[]
 }
 
-export const CommunitySuggestions: React.FunctionComponent<{}> = () => {
-    const [{pending, suggestions = [], error}, dispatch] = useReducer(
-        SuggestionsReducer,
-        initialState
-    )
+export const CommunitySuggestionsTwo: React.FunctionComponent<{}> = () => {
+    const [{suggestions: suggestionsState}, dispatch] : [RootState, Dispatch<SuggestionActions>] = useRedux<SuggestionActions>()
+    const {error, pending, suggestions} = suggestionsState
 
-    // TODO move to 'effects'
-    // TODO add debounce?
+    console.log(`suggestionState`, suggestionsState)
+    if (!pending && suggestions.length === 0) {
+        console.log(`dispatching` , SuggestionsGet())
+        dispatch(SuggestionsGet())
+    }
+
     useEffect(
         () => {
             if (pending) {
