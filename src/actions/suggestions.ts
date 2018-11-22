@@ -4,6 +4,7 @@ export enum SuggestionActionTypes {
     Get = 'suggestions.get',
     Acquired = 'suggestions.acquired',
     Error = 'suggestions.error',
+    Submit = 'suggestions.submit',
 }
 
 interface Action<T, P> {
@@ -14,6 +15,7 @@ interface Action<T, P> {
 type SuggestionGetAction = Action<SuggestionActionTypes.Get, null>
 type SuggestionAcquiredAction = Action<SuggestionActionTypes.Acquired, Suggestion[]>
 type SuggestionErrorAction = Action<SuggestionActionTypes.Error, any>
+type SuggestionSubmitAction = Action<SuggestionActionTypes.Submit, Suggestion>
 
 export const SuggestionsGet = (): SuggestionGetAction => ({
     type: SuggestionActionTypes.Get,
@@ -29,7 +31,13 @@ export const SuggestionsError = (payload: any): SuggestionErrorAction => ({
     payload,
 })
 
+export const SuggestionsSubmit = (payload: Suggestion): SuggestionSubmitAction => ({
+    type: SuggestionActionTypes.Submit,
+    payload,
+})
+
 export type SuggestionActions =
     SuggestionGetAction |
     SuggestionAcquiredAction |
-    SuggestionErrorAction
+    SuggestionErrorAction |
+    SuggestionSubmitAction

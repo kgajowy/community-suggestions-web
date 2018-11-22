@@ -15,6 +15,12 @@ export const initialState: SuggestionsState = {
 
 export const SuggestionsReducer = (state: SuggestionsState = initialState, action: SuggestionActions): SuggestionsState => {
     switch (action.type) {
+        case SuggestionActionTypes.Submit:
+            console.log(`>>> submit action`)
+            return {
+                ...initialState,
+                suggestions: [action.payload!, ...state.suggestions]
+            }
         case SuggestionActionTypes.Get:
             console.log(`>>> get action`)
             return {
