@@ -1,11 +1,19 @@
 import * as React from 'react'
 import Suggestion from '../../shared/interfaces/suggestion'
+import {styled} from '../../theme/styled'
+import {StyledProps} from '../../theme/styled-props'
 import {Suggestion as SuggestionView} from './Suggestion'
 
 interface SuggestionsProps {
     suggestions: Suggestion[]
 }
 
-export const Suggestions : React.FunctionComponent<SuggestionsProps> = ({suggestions = []}) => <>
-    { suggestions.map((s, i) => <SuggestionView key={i} {...s}/>)}
-</>
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+`
+
+export const Suggestions: React.FunctionComponent<SuggestionsProps & StyledProps> = ({suggestions = []}) => <Container>
+    {suggestions.map((s, i) => <SuggestionView key={i} {...s}/>)}
+</Container>

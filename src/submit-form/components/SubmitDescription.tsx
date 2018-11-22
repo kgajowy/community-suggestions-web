@@ -5,8 +5,11 @@ import styled from '../../theme/styled'
 const TextArea = styled.textarea`
   border: ${p => `1px solid ${p.theme.primaryColor}`};
   border-radius: 5px;
-  margin: 0;
-  width: 100%;
+  outline: 0 none;
+  resize: none;
+  padding: 0;
+  height: 100%;
+  margin-top: 10px;
 `
 
 export const SubmitDescription = styled(TextArea)``

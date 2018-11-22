@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://kgajowy.github.io/community-suggestions-web/",
   "dependencies": {
+    "axios": "^0.18.0",
     "normalize.css": "^8.0.1",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",

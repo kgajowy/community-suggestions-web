@@ -1,5 +1,5 @@
-import {useContext, useEffect} from 'react'
-import {Action, Dispatch} from 'redux'
+import {useEffect} from 'react'
+import {Dispatch} from 'redux'
 import {SuggestionActions, SuggestionsAcquired, SuggestionsError} from '../../actions/suggestions'
 import {RootState} from '../../reducers'
 import {SuggestionsState} from '../../reducers/suggestions'
@@ -7,7 +7,7 @@ import useRedux from '../hooks/use-redux'
 import {getSuggestions} from '../services/community-suggestions'
 
 export function useSuggestions(): [SuggestionsState, Dispatch<SuggestionActions>] {
-    const [{suggestions: suggestionsState}, dispatch] : [RootState, Dispatch<SuggestionActions>] = useRedux<SuggestionActions>()
+    const [{suggestions: suggestionsState}, dispatch]: [RootState, Dispatch<SuggestionActions>] = useRedux<SuggestionActions>()
     const {pending, suggestions} = suggestionsState
 
     useEffect(
@@ -26,7 +26,7 @@ export function useSuggestions(): [SuggestionsState, Dispatch<SuggestionActions>
             }
         },
         [pending, suggestions],
-    );
+    )
 
     return [suggestionsState, dispatch]
 }
