@@ -7,7 +7,8 @@ import {SubmitDescription} from './SubmitDescription'
 import {SubmitName} from './SubmitName'
 
 export interface SubmitForm {
-    onSubmit: (suggestion: Suggestion) => void
+    onSubmit: (suggestion: Suggestion) => void,
+    disabled: boolean,
 }
 
 const Container = styled.div`
@@ -34,11 +35,16 @@ const Submit = styled(Button)`
     background-color: ${p => p.theme.secondaryColorBackground};
   }
   
+  &:disabled {
+    color: white;
+    background-color: darkgrey;
+  }
+  
   transition: all 0.5s;
 `
 
 // export function SubmitForm({onSubmit}: SubmitForm) {
-export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit}) => {
+export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit, disabled}) => {
     const [title, setTitle] = useState<string>('')
     const onTitleChange = (event: React.FormEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
 
@@ -52,7 +58,7 @@ export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit}) => {
                 <SubmitName onChange={onTitleChange} value={title}/>
                 <SubmitDescription onChange={onDescChange} value={description}/>
             </InputContainer>
-            <Submit onClick={onClick}>Submit suggestion</Submit>
+            <Submit onClick={onClick} disabled={disabled}>Submit suggestion</Submit>
         </Container>
     )
 }

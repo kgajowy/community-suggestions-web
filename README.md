@@ -25,13 +25,14 @@
     - [ ] Log Out
 
 - [ ] Submit suggestion Form
-    - [ ] View Components
+    - [x] View Components
     - [ ] Markdown for description
-    - [ ] Controller Component
+    - [x] Controller Component
     - [ ] Validation
     - [ ] Authorization
     - [ ] Styling
-    - [ ] Redux / Hooks / Redux + Hooks
+    - [x] Redux / Hooks / Redux + Hooks
+    - [ ] figure out how to clear inputs after successful submit. Probably useEffect within SubmitSuggestion FComp.
     - [ ] Connect API
     - [ ] ...
     

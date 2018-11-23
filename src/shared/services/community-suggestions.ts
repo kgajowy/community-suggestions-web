@@ -18,3 +18,11 @@ export const getSuggestions = async () : Promise<Suggestion[]> => {
         voters
     }))
 }
+
+export const submitSuggestion = async (s: Suggestion): Promise<Suggestion> => {
+    return new Promise<Suggestion>((resolve) => {
+        setTimeout(() => {
+            resolve(s)
+        }, 1500)
+    })
+}

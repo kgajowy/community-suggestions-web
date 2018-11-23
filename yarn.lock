@@ -6931,6 +6931,10 @@ react-is@^16.3.2, react-is@^16.6.0:
   version "16.6.3"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
 
+react-progressive-image@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-progressive-image/-/react-progressive-image-0.6.0.tgz#56b1c7153a6e1ebbe2a3bbf8f98c37410fbc67c2"
+
 react-redux@^6.0.0-beta.2:
   version "6.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-6.0.0-beta.2.tgz#90b8d50ae71d9dc5d413200836d279de64f7c3e2"

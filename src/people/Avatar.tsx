@@ -1,6 +1,9 @@
 import * as React from 'react'
 import {styled} from '../theme/styled'
 import {StyledProps} from '../theme/styled-props'
+import ProgressiveImage from 'react-progressive-image'
+
+import placeholder from './avatar-placeholder.svg'
 
 const Image = styled.img`
     vertical-align: middle;
@@ -16,4 +19,11 @@ const Image = styled.img`
 `
 
 export const Avatar: React.FunctionComponent<{url: string} & StyledProps> = ({url, className}) =>
-    <Image className={className} src={url}/>
+    <ProgressiveImage
+        delay={3000}
+        src={url}
+        placeholder={placeholder}
+    >
+        {(src: string) => <Image className={className} src={src}/>}
+    </ProgressiveImage>
+
