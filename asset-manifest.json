@@ -1,11 +1,12 @@
 {
-  "main.js": "/community-suggestions-web/static/js/main.04557dea.chunk.js",
-  "main.js.map": "/community-suggestions-web/static/js/main.04557dea.chunk.js.map",
-  "static/js/1.66298fe4.chunk.js": "/community-suggestions-web/static/js/1.66298fe4.chunk.js",
-  "static/js/1.66298fe4.chunk.js.map": "/community-suggestions-web/static/js/1.66298fe4.chunk.js.map",
+  "main.js": "/community-suggestions-web/static/js/main.949184df.chunk.js",
+  "main.js.map": "/community-suggestions-web/static/js/main.949184df.chunk.js.map",
+  "static/js/1.149beeff.chunk.js": "/community-suggestions-web/static/js/1.149beeff.chunk.js",
+  "static/js/1.149beeff.chunk.js.map": "/community-suggestions-web/static/js/1.149beeff.chunk.js.map",
   "runtime~main.js": "/community-suggestions-web/static/js/runtime~main.1d311b3a.js",
   "runtime~main.js.map": "/community-suggestions-web/static/js/runtime~main.1d311b3a.js.map",
+  "static/media/avatar-placeholder.svg": "/community-suggestions-web/static/media/avatar-placeholder.fa7becf5.svg",
   "index.html": "/community-suggestions-web/index.html",
-  "precache-manifest.84c98e5400297cbffb3d906be15417b9.js": "/community-suggestions-web/precache-manifest.84c98e5400297cbffb3d906be15417b9.js",
+  "precache-manifest.4860c26f52fbbf3925175780e218a862.js": "/community-suggestions-web/precache-manifest.4860c26f52fbbf3925175780e218a862.js",
   "service-worker.js": "/community-suggestions-web/service-worker.js"
 }
