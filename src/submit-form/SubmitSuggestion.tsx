@@ -18,7 +18,7 @@ type Props = DispatchProps & StateProps
 
 class SubmitSuggestion extends React.Component<Props> {
     public render() {
-        return <SubmitForm onSubmit={this.props.submit} disabled={this.props.pending}/>
+        return <SubmitForm onSubmit={this.props.submit} pending={this.props.pending}/>
     }
 }
 

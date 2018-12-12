@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {FunctionComponent, useState} from 'react'
 import {Button} from '../../shared/components/Button'
+import {Spinner} from '../../shared/components/Spinner'
 import Suggestion from '../../shared/interfaces/suggestion'
 import {styled} from '../../theme/styled'
 import {SubmitDescription} from './SubmitDescription'
@@ -8,7 +9,7 @@ import {SubmitName} from './SubmitName'
 
 export interface SubmitForm {
     onSubmit: (suggestion: Suggestion) => void,
-    disabled: boolean,
+    pending: boolean,
 }
 
 const Container = styled.div`
@@ -42,8 +43,7 @@ const Submit = styled(Button)`
   text-transform: uppercase;
   
   &:hover {
-    color: darken(${p => p.theme.primaryColorBackground}, 5%);
-    background-color: darken(${p => p.theme.primaryColor}, 5%);
+    filter: brightness(85%);
   }
   
   &:disabled {
@@ -57,8 +57,7 @@ const Submit = styled(Button)`
   transition: all 300ms ease-in;
 `
 
-// export function SubmitForm({onSubmit}: SubmitForm) {
-export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit, disabled}) => {
+export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit, pending}) => {
     const [title, setTitle] = useState<string>('')
     const onTitleChange = (event: React.FormEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
 
@@ -66,13 +65,25 @@ export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit, disabled}) 
     const onDescChange = (event: React.FormEvent<HTMLTextAreaElement>) => setDescription(event.currentTarget.value)
     const onClick = () => onSubmit({title, description, voters: [], supporters: []})
 
+    const inputsFilled = Boolean(title && description)
+
     return (
         <Container>
             <InputContainer>
-                <SubmitName onChange={onTitleChange} value={title}/>
-                <SubmitDescription onChange={onDescChange} value={description}/>
+                <SubmitName onChange={onTitleChange}
+                            disabled={pending}
+                            value={title}
+                            placeholder={'Rough title/name of your idea.'}
+                />
+                <SubmitDescription onChange={onDescChange}
+                                   disabled={pending}
+                                   value={description}
+                                   placeholder={'Describe your idea in details!'}/>
             </InputContainer>
-            <Submit onClick={onClick} disabled={disabled}>Submit</Submit>
+            <Submit onClick={onClick} disabled={pending || !inputsFilled}>
+                {!pending && "Submit"}
+                {pending && <Spinner/>}
+            </Submit>
         </Container>
     )
 }

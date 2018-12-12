@@ -8,4 +8,8 @@ export const inputStyles = css`
 	border: 0;
     outline: 0;
 	padding: 22px 18px;
+	
+	::placeholder {
+	  opacity: 0.5;
+	}
 `

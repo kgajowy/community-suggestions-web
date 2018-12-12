@@ -1,35 +1,42 @@
 import * as React from 'react'
 import {Avatar} from '../../people/Avatar'
 import {default as SuggestionInterface} from '../../shared/interfaces/suggestion'
+import {inputStyles} from '../../submit-form/components/input-styles'
 import {styled} from '../../theme/styled'
 
 const Container = styled.div`
+  ${inputStyles};
   padding: 30px;
-  border: 1px solid black;
   background: #fff;
   border-radius: 7px;
   
   margin-bottom: 90px;
   
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  
   &:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
+  
+  transition: all 300ms ease-in;
 `
 
 const CondensedAvatar = styled(Avatar)`
   margin-right: -20px;
 `
 
+const H3 = styled.h3`
+  color: black;
+`
+const H4 = styled.h4`
+  color: black;
+`
+
 export const Suggestion: React.FunctionComponent<SuggestionInterface> = ({title, description, supporters, voters}) =>
     <Container>
-        <h3>{title}</h3>
+        <H3>{title}</H3>
         <p>{description}</p>
-        <h4>Supporters</h4>
-        { supporters.map((s,i) => <Avatar url={s.picture.medium} key={i}/>) }
-        <h4>Voters</h4>
-        { voters.map((s,i) => <CondensedAvatar url={s.picture.medium} key={i}/>) }
+        <H4>Supporters</H4>
+        {supporters.map((s, i) => <Avatar url={s.picture.medium} key={i}/>)}
+        <H4>Voters</H4>
+        {voters.map((s, i) => <CondensedAvatar url={s.picture.medium} key={i}/>)}
 
     </Container>
