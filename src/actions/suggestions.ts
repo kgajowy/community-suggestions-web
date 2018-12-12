@@ -1,4 +1,7 @@
+import {ThunkAction} from 'redux-thunk'
+import {RootState} from '../reducers'
 import Suggestion from '../shared/interfaces/suggestion'
+import {getSuggestions} from '../shared/services/community-suggestions'
 
 export enum SuggestionActionTypes {
     Get = 'suggestions.get',
@@ -21,9 +24,20 @@ type SuggestionSubmitAction = Action<SuggestionActionTypes.Submit, Suggestion>
 type SuggestionSubmitErrorAction = Action<SuggestionActionTypes.SubmitError, any>
 type SuggestionSubmitOkAction = Action<SuggestionActionTypes.SubmitOk, Suggestion>
 
-export const SuggestionsGet = (): SuggestionGetAction => ({
-    type: SuggestionActionTypes.Get,
-})
+type ThunkResult = ThunkAction<void, RootState, undefined, SuggestionActions>;
+
+export const SuggestionsGet = (): ThunkResult => {
+    console.log(`SuggestionsGet 1`)
+    return (dispatch) => {
+        console.log(`SuggestionsGet 2`)
+        dispatch({
+            type: SuggestionActionTypes.Get,
+        })
+        getSuggestions()
+            .then(r => dispatch(SuggestionsAcquired(r)))
+            .catch(e => dispatch(SuggestionsError(e)))
+    }
+}
 
 export const SuggestionsAcquired = (payload: Suggestion[]): SuggestionAcquiredAction => ({
     type: SuggestionActionTypes.Acquired,

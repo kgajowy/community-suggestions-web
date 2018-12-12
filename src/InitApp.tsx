@@ -1,7 +1,8 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {Dispatch} from 'redux'
+import {ThunkDispatch} from 'redux-thunk'
 import {SuggestionActions, SuggestionsGet} from './actions/suggestions'
+import {RootState} from './reducers'
 
 interface InitAppProps {
     fetch: () => void
@@ -17,7 +18,7 @@ class InitApp extends React.Component<InitAppProps> {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<SuggestionActions>): InitAppProps => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, undefined, SuggestionActions>): InitAppProps => ({
     fetch: () => dispatch(SuggestionsGet())
 })
 

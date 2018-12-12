@@ -1,4 +1,7 @@
-import { createStore } from 'redux'
+import {applyMiddleware, createStore} from 'redux'
+
+import thunk from 'redux-thunk'
 import communityApp from './reducers/index'
 
-export default createStore(communityApp)
+export default createStore(communityApp,
+    applyMiddleware(thunk))
