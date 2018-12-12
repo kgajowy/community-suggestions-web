@@ -7,7 +7,7 @@ import store from './store'
 import SubmitSuggestion from './submit-form/SubmitSuggestion'
 import CommunitySuggestions from './suggestions/CommunitySuggestions'
 import {defaultTheme} from './theme/default-theme'
-import {styled, ThemeProvider} from './theme/styled'
+import {createGlobalStyle, styled, ThemeProvider} from './theme/styled'
 
 const CenterColumn = styled.div`
   margin: 0 auto;
@@ -19,11 +19,18 @@ const CenterColumn = styled.div`
   `}
 `
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Titillium Web', sans-serif;
+  }
+`
+
 class App extends Component {
     render() {
         return (
             <Provider store={store}>
                 <>
+                    <GlobalStyle/>
                     <InitApp/>
                     <Normalize/>
                     <ThemeProvider theme={defaultTheme}>

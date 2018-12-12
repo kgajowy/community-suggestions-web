@@ -1,6 +1,6 @@
 import styled from '../../theme/styled'
+import {inputStyles} from './input-styles'
 
 export const SubmitName = styled.input`
-  border: ${p => `1px solid ${p.theme.primaryColor}
-`};
+  ${inputStyles};
 `

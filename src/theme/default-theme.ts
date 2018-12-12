@@ -1,9 +1,9 @@
 import ThemeInterface from './theme'
 
 export const defaultTheme : ThemeInterface = {
-    primaryColor: 'black',
-    secondaryColor: 'red',
+    primaryColor: '#7f8ff4',
+    secondaryColor: 'green',
     primaryColorBackground: 'white',
-    secondaryColorBackground: 'black',
+    secondaryColorBackground: 'white',
 
 }

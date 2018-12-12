@@ -26,21 +26,35 @@ const InputContainer = styled.div`
 
 const Submit = styled(Button)`
   align-self: flex-end;
+  
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 12px 36px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+		
   width: 200px;
   height: 100%;
-  background-color: ${p => p.theme.primaryColorBackground};
-  color: ${p => p.theme.primaryColor};
+  background-color: ${p => p.theme.primaryColor};
+  color: ${p => p.theme.primaryColorBackground};
+  
+  text-transform: uppercase;
+  
   &:hover {
-    color: ${p => p.theme.secondaryColor};
-    background-color: ${p => p.theme.secondaryColorBackground};
+    color: darken(${p => p.theme.primaryColorBackground}, 5%);
+    background-color: darken(${p => p.theme.primaryColor}, 5%);
   }
   
   &:disabled {
-    color: white;
-    background-color: darkgrey;
+    opacity: 0.5;
   }
   
-  transition: all 0.5s;
+  &:active {
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
+  }
+  
+  transition: all 300ms ease-in;
 `
 
 // export function SubmitForm({onSubmit}: SubmitForm) {
@@ -52,14 +66,13 @@ export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit, disabled}) 
     const onDescChange = (event: React.FormEvent<HTMLTextAreaElement>) => setDescription(event.currentTarget.value)
     const onClick = () => onSubmit({title, description, voters: [], supporters: []})
 
-    console.log('submit suggestion - form under controller - render')
     return (
         <Container>
             <InputContainer>
                 <SubmitName onChange={onTitleChange} value={title}/>
                 <SubmitDescription onChange={onDescChange} value={description}/>
             </InputContainer>
-            <Submit onClick={onClick} disabled={disabled}>Submit suggestion</Submit>
+            <Submit onClick={onClick} disabled={disabled}>Submit</Submit>
         </Container>
     )
 }
