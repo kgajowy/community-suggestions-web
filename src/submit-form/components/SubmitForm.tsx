@@ -67,21 +67,25 @@ export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit, pending}) =
 
     const inputsFilled = Boolean(title && description)
 
+    const inputTitlePlaceholder = 'Rough title/name of your idea.'
+    const inputDescPlaceholder = 'Describe your idea in details!'
+    const submitText = 'Submit'
+
     return (
         <Container>
             <InputContainer>
                 <SubmitName onChange={onTitleChange}
                             disabled={pending}
                             value={title}
-                            placeholder={'Rough title/name of your idea.'}
+                            placeholder={inputTitlePlaceholder}
                 />
                 <SubmitDescription onChange={onDescChange}
                                    disabled={pending}
                                    value={description}
-                                   placeholder={'Describe your idea in details!'}/>
+                                   placeholder={inputDescPlaceholder}/>
             </InputContainer>
             <Submit onClick={onClick} disabled={pending || !inputsFilled}>
-                {!pending && "Submit"}
+                {!pending && submitText}
                 {pending && <Spinner/>}
             </Submit>
         </Container>
