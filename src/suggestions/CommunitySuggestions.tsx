@@ -1,15 +1,16 @@
 import * as React from 'react'
-import {Dispatch} from 'redux'
-import {SuggestionActions} from '../actions/suggestions'
+import {connect} from 'react-redux'
 import {RootState} from '../reducers'
-import useRedux from '../shared/hooks/use-redux'
-import {styled} from '../theme/styled'
-import {StyledProps} from '../theme/styled-props'
+import {default as SuggestionEntity} from '../shared/interfaces/suggestion'
 import {Suggestions} from './components/Suggestions'
 
-export const CommunitySuggestions: React.FunctionComponent<StyledProps> = ({className}) => {
-    const [{suggestions: suggestionsState}, _]: [RootState, Dispatch<SuggestionActions>] = useRedux<SuggestionActions>()
-    const {error, pending, suggestions} = suggestionsState
+interface StateProps {
+    pending: boolean
+    error: any
+    suggestions: SuggestionEntity[]
+}
+
+const CommunitySuggestions: React.FunctionComponent<StateProps> = ({pending, error, suggestions}) => {
     return (
         <>
             {pending && <>Loading...</>}
@@ -18,3 +19,12 @@ export const CommunitySuggestions: React.FunctionComponent<StyledProps> = ({clas
         </>
     )
 }
+
+const mapStateToProps = ({suggestions}: RootState): StateProps => ({
+    pending: suggestions.pending,
+    error: suggestions.error,
+    suggestions: suggestions.suggestions,
+})
+
+export default connect<StateProps, {}, {}, RootState>
+(mapStateToProps)(CommunitySuggestions) as React.ComponentClass<{}>

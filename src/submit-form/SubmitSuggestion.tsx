@@ -1,12 +1,36 @@
 import * as React from 'react'
+import {connect} from 'react-redux'
+import {Dispatch} from 'redux'
 import {SuggestionActions, SuggestionSubmit} from '../actions/suggestions'
-import useRedux from '../shared/hooks/use-redux'
+import {RootState} from '../reducers'
 import Suggestion from '../shared/interfaces/suggestion'
 import {SubmitForm} from './components/SubmitForm'
 
-export const SubmitSuggestion: React.FunctionComponent<{}> = () => {
-    const [{suggestions}, dispatch] = useRedux<SuggestionActions>()
-    const submitSuggestion = (s: Suggestion) => dispatch(SuggestionSubmit(s))
-
-    return <SubmitForm onSubmit={submitSuggestion} disabled={suggestions.submitPending || suggestions.pending}/>
+interface DispatchProps {
+    submit: (suggestion: Suggestion) => any
 }
+
+interface StateProps {
+    pending: boolean
+}
+
+type Props = DispatchProps & StateProps
+
+class SubmitSuggestion extends React.Component<Props> {
+    public render() {
+        return <SubmitForm onSubmit={this.props.submit} disabled={this.props.pending}/>
+    }
+}
+
+const mapStateToProps = (state: RootState): StateProps => ({
+    pending: state.suggestions.submitPending
+})
+
+const mapDispatchToProps = (dispatch: Dispatch<SuggestionActions>): DispatchProps => ({
+    submit: (suggestion: Suggestion) => dispatch(SuggestionSubmit(suggestion)),
+})
+
+
+
+export default connect<StateProps, DispatchProps, {}, RootState>
+(mapStateToProps, mapDispatchToProps)(SubmitSuggestion) as React.ComponentClass<{}>

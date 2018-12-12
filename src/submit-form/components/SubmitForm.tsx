@@ -52,6 +52,7 @@ export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit, disabled}) 
     const onDescChange = (event: React.FormEvent<HTMLTextAreaElement>) => setDescription(event.currentTarget.value)
     const onClick = () => onSubmit({title, description, voters: [], supporters: []})
 
+    console.log('submit suggestion - form under controller - render')
     return (
         <Container>
             <InputContainer>

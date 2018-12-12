@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
-// @ts-ignore
 import {Provider} from 'react-redux'
 import {Normalize} from 'styled-normalize'
-import {Effects} from './Effects'
 import InitApp from './InitApp'
 import {media} from './shared/styles/media'
 import store from './store'
-import {SubmitSuggestion} from './submit-form/SubmitSuggestion'
-import {CommunitySuggestions} from './suggestions/CommunitySuggestions'
+import SubmitSuggestion from './submit-form/SubmitSuggestion'
+import CommunitySuggestions from './suggestions/CommunitySuggestions'
 import {defaultTheme} from './theme/default-theme'
 import {styled, ThemeProvider} from './theme/styled'
 
@@ -23,18 +21,20 @@ const CenterColumn = styled.div`
 
 class App extends Component {
     render() {
-        return (<Provider store={store}>
-                <InitApp/>
-                <Effects/>
-                <Normalize/>
-                <ThemeProvider theme={defaultTheme}>
-                    <CenterColumn>
-                        <h1>Hello WarsawJS Community!</h1>
-                        <SubmitSuggestion/>
-                        <h1>Community Suggestions:</h1>
-                        <CommunitySuggestions/>
-                    </CenterColumn>
-                </ThemeProvider>
+        return (
+            <Provider store={store}>
+                <>
+                    <InitApp/>
+                    <Normalize/>
+                    <ThemeProvider theme={defaultTheme}>
+                        <CenterColumn>
+                            <h1>Hello WarsawJS Community!</h1>
+                            <SubmitSuggestion/>
+                            <h1>Community Suggestions:</h1>
+                            <CommunitySuggestions/>
+                        </CenterColumn>
+                    </ThemeProvider>
+                </>
             </Provider>
         )
     }

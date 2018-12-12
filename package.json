@@ -9,7 +9,7 @@
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-progressive-image": "^0.6.0",
-    "react-redux": "^6.0.0-beta.2",
+    "react-redux": "^5.1.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "styled-components": "^4.1.1",
@@ -37,6 +37,7 @@
     "@types/node": "10.12.9",
     "@types/react": "16.7.6",
     "@types/react-dom": "16.0.9",
+    "@types/react-redux": "^6.0.10",
     "@types/redux": "^3.6.0",
     "@types/styled-components": "^4.1.0",
     "gh-pages": "^2.0.1"

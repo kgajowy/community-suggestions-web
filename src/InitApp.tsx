@@ -1,27 +1,24 @@
 import * as React from 'react'
-// @ts-ignore
 import {connect} from 'react-redux'
-import {AnyAction, Dispatch} from 'redux'
-import {SuggestionsGet} from './actions/suggestions'
+import {Dispatch} from 'redux'
+import {SuggestionActions, SuggestionsGet} from './actions/suggestions'
 
 interface InitAppProps {
-    dispatch: Dispatch<AnyAction>
+    fetch: () => void
 }
 
 class InitApp extends React.Component<InitAppProps> {
-
     public componentDidMount() {
-        console.log(`dispatching initial GET`)
-        this.props.dispatch(SuggestionsGet())
+        this.props.fetch()
     }
 
     public render() {
-        return <div/>
+        return <React.Fragment/>
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): InitAppProps => ({
-    dispatch
+const mapDispatchToProps = (dispatch: Dispatch<SuggestionActions>): InitAppProps => ({
+    fetch: () => dispatch(SuggestionsGet())
 })
 
 export default connect(null, mapDispatchToProps)(InitApp)
