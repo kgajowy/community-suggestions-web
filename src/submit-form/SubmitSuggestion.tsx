@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
+import {ThunkDispatch} from 'redux-thunk'
 import {SuggestionActions, SuggestionSubmit} from '../actions/suggestions'
 import {RootState} from '../reducers'
 import Suggestion from '../shared/interfaces/suggestion'
@@ -25,8 +26,9 @@ class SubmitSuggestion extends React.Component<Props> {
 const mapStateToProps = (state: RootState): StateProps => ({
     pending: state.suggestions.submitPending
 })
+// TODO pick if wants to be a supporter or voter
 
-const mapDispatchToProps = (dispatch: Dispatch<SuggestionActions>): DispatchProps => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, undefined, SuggestionActions>): DispatchProps => ({
     submit: (suggestion: Suggestion) => dispatch(SuggestionSubmit(suggestion)),
 })
 

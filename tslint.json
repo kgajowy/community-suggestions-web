@@ -1,0 +1,27 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-eslint-rules"
+  ],
+  "jsRules": {},
+  "rules": {
+    "semicolon": false,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "interface-name": false,
+    "no-console": false,
+    "object-literal-sort-keys": false,
+    "jsx-boolean-value": false,
+    "no-var-requires": false,
+    "object-curly-spacing": [true, "never"]
+  },
+  "rulesDirectory": []
+}
