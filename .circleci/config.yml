@@ -93,10 +93,7 @@ jobs:
         - "SO:ME:FIN:G:ER:PR:IN:T"
     - run:
         name: Running Code Coverage
-        command: |
-          git config --global user.email $GH_EMAIL
-          git config --global user.name $GH_NAME
-          yarn run deploy
+        command: yarn run deploy
     - persist_to_workspace:
         root: .
         paths:
@@ -121,3 +118,4 @@ workflows:
       - deploy:
           requires:
           - build
+          - test
