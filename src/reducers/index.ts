@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import { SuggestionsReducer, SuggestionsState } from './suggestions';
+import { combineReducers } from "redux";
+import { SuggestionsReducer, SuggestionsState } from "./suggestions";
 
 export interface RootState {
-    suggestions: SuggestionsState
+  suggestions: SuggestionsState;
 }
 
 export default combineReducers<RootState>({
-    suggestions: SuggestionsReducer,
+  suggestions: SuggestionsReducer
 });

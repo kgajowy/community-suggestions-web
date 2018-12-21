@@ -63,7 +63,7 @@ export const SubmitForm: FunctionComponent<SubmitForm> = ({onSubmit, pending}) =
 
     const [description, setDescription] = useState<string>('')
     const onDescChange = (event: React.FormEvent<HTMLTextAreaElement>) => setDescription(event.currentTarget.value)
-    const onClick = () => onSubmit({title, description, voters: [], supporters: []})
+    const onClick = () => onSubmit({title, description, voters: [], supporters: [], id: ''})
 
     const inputsFilled = Boolean(title && description)
 
