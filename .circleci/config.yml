@@ -1,21 +1,18 @@
 version: 2
+
+anchors:
+- &image_default circleci/node:10.14
+- &working_directory ~/repo
+
 jobs:
-  build:
+  resolve-dependencies:
     docker:
-    # specify the version you desire here
-    - image: circleci/node:10.14
-
-    # Specify service dependencies here if necessary
-    # CircleCI maintains a library of pre-built images
-    # documented at https://circleci.com/docs/2.0/circleci-images/
-    # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
+    - image: *image_default
+    working_directory: *working_directory
 
     steps:
     - checkout
 
-    # Download and cache dependencies
     - restore_cache:
         keys:
         - v1-dependencies-{{ checksum "package.json" }}
@@ -28,22 +25,71 @@ jobs:
         paths:
         - node_modules
         key: v1-dependencies-{{ checksum "package.json" }}
+    - persist_to_workspace:
+        root: .
+        paths:
+        - .
 
-    # run tests!
+  build:
+    docker:
+    - image: *image_default
+    working_directory: *working_directory
+    steps:
+    - attach_workspace:
+        at: .
+    - run:
+        name: Running Build Step
+        command: yarn run build
+    - persist_to_workspace:
+        root: .
+        paths:
+        - .
 
-  prettier:
-    - run: yarn run lint:ci
   test:
-    - run: yarn test:cov:ci
+    docker:
+    - image: *image_default
+    working_directory: *working_directory
+    steps:
+    - attach_workspace:
+        at: .
+    - run:
+        name: Running Lint
+        command: yarn run lint:ci
+    - run:
+        name: Running Test
+        command: yarn run test
+    - persist_to_workspace:
+        root: .
+        paths:
+        - .
+  coverage:
+    docker:
+    - image: *image_default
+    working_directory: *working_directory
+    steps:
+    - attach_workspace:
+        at: .
+    - run:
+        name: Running Code Coverage
+        command: yarn test:cov:ci
+    - persist_to_workspace:
+        root: .
+        paths:
+        - .
 
 workflows:
   version: 2
   ci-all:
     jobs:
-      - build
-      - prettier:
+      - resolve-dependencies
+      - build:
           requires:
-          - build
+          - resolve-dependencies
       - test:
           requires:
+          - resolve-dependencies
           - build
+      - coverage:
+          requires:
+          - resolve-dependencies
+          - test
