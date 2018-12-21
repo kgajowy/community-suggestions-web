@@ -3,7 +3,7 @@ import { RootState } from "../reducers";
 import Suggestion from "../shared/interfaces/suggestion";
 import {
   getSuggestions,
-  submitSuggestion
+  submitSuggestion,
 } from "../shared/services/community-suggestions";
 
 export enum SuggestionActionTypes {
@@ -12,7 +12,7 @@ export enum SuggestionActionTypes {
   Error = "suggestions.error",
   Submit = "suggestions.submit",
   SubmitError = "suggestions.submit.error",
-  SubmitOk = "suggestions.submit.ok"
+  SubmitOk = "suggestions.submit.ok",
 }
 
 interface Action<T, P> {
@@ -43,7 +43,7 @@ export const SuggestionsGet = (): ThunkResult => {
   return dispatch => {
     console.log(`SuggestionsGet 2`);
     dispatch({
-      type: SuggestionActionTypes.Get
+      type: SuggestionActionTypes.Get,
     });
     getSuggestions()
       .then(r => dispatch(SuggestionsAcquired(r)))
@@ -55,12 +55,12 @@ export const SuggestionsAcquired = (
   payload: Suggestion[]
 ): SuggestionAcquiredAction => ({
   type: SuggestionActionTypes.Acquired,
-  payload
+  payload,
 });
 
 export const SuggestionsError = (payload: any): SuggestionErrorAction => ({
   type: SuggestionActionTypes.Error,
-  payload
+  payload,
 });
 
 export const SuggestionSubmit = (payload: Suggestion): ThunkResult => {
@@ -68,7 +68,7 @@ export const SuggestionSubmit = (payload: Suggestion): ThunkResult => {
   return dispatch => {
     dispatch({
       type: SuggestionActionTypes.Submit,
-      payload
+      payload,
     });
     console.log(`SuggestionSubmit 2`);
     submitSuggestion(payload)
@@ -81,14 +81,14 @@ export const SuggestionSubmitError = (
   payload: any
 ): SuggestionSubmitErrorAction => ({
   type: SuggestionActionTypes.SubmitError,
-  payload
+  payload,
 });
 
 export const SuggestionSubmitOk = (
   payload: Suggestion
 ): SuggestionSubmitOkAction => ({
   type: SuggestionActionTypes.SubmitOk,
-  payload
+  payload,
 });
 
 export type SuggestionActions =
