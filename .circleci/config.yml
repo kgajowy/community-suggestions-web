@@ -30,5 +30,20 @@ jobs:
         key: v1-dependencies-{{ checksum "package.json" }}
 
     # run tests!
+
+  prettier:
     - run: yarn run lint:ci
+  test:
     - run: yarn test:cov:ci
+
+workflows:
+  version: 2
+  ci-all:
+    jobs:
+      - build
+      - prettier:
+          requires:
+          - build
+      - test:
+          requires:
+          - build
