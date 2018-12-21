@@ -2,14 +2,13 @@
 
 # Roadmap - 1.0
 
-- [ ] Development
+- [x] Development
 
   - [x] tslint
   - [x] prettier
   - [x] husky
   - [x] CI
-  - [ ] configure & CI deployment to public server
-  - [ ] ...
+  - [x] configure & CI deployment to public server
 
 - [ ] App-wide tasks
 

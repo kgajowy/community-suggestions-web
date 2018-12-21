@@ -1,5 +1,9 @@
 version: 2
 
+branches:
+  ignore:
+    - gh-pages
+
 anchors:
 - &image_default circleci/node:10.14
 - &working_directory ~/repo
@@ -77,6 +81,27 @@ jobs:
         paths:
         - .
 
+  deploy:
+    docker:
+    - image: *image_default
+    working_directory: *working_directory
+    steps:
+    - attach_workspace:
+        at: .
+    - add_ssh_keys:
+        fingerprints:
+        - "SO:ME:FIN:G:ER:PR:IN:T"
+    - run:
+        name: Running Code Coverage
+        command: |
+          git config --global user.email $GH_EMAIL
+          git config --global user.name $GH_NAME
+          yarn run deploy
+    - persist_to_workspace:
+        root: .
+        paths:
+        - .
+
 workflows:
   version: 2
   ci-all:
@@ -93,3 +118,6 @@ workflows:
           requires:
           - resolve-dependencies
           - test
+      - deploy:
+          requires:
+          - build
