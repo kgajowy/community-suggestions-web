@@ -88,9 +88,10 @@ jobs:
     steps:
     - attach_workspace:
         at: .
+    - checkout
     - add_ssh_keys:
         fingerprints:
-        - "SO:ME:FIN:G:ER:PR:IN:T"
+          - "SO:ME:FIN:G:ER:PR:IN:T"
     - run:
         name: Running Code Coverage
         command: yarn run deploy
