@@ -12,12 +12,14 @@
   - [ ] ...
 
 - [ ] App-wide tasks
+
   - [x] normalize.css
   - [ ] Grid
   - [ ] Toasts (via Context?)
   - [ ] i18n
   - [ ] Nav Bar
   - [ ] ...
+
 - [ ] Authorization
 
   - [ ] Log-in with GitHub (needs backend?)
@@ -27,6 +29,7 @@
   - [ ] Log Out
 
 - [ ] Submit suggestion Form
+
   - [x] View Components
   - [ ] Markdown for description
   - [x] Controller Component
@@ -37,6 +40,7 @@
   - [ ] Clear inputs after successful submit.
   - [ ] Connect API
   - [ ] ...
+
 - [ ] List Suggestions
 
   - [x] View Components
