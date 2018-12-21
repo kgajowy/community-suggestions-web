@@ -88,10 +88,11 @@ jobs:
     steps:
     - attach_workspace:
         at: .
-    - checkout
     - add_ssh_keys:
         fingerprints:
           - "SO:ME:FIN:G:ER:PR:IN:T"
+    - run: mkdir -p ~/.ssh
+    - run: echo ‘github.com ssh-rsa nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8’ >> ~/.ssh/known_hosts
     - run:
         name: Running Code Coverage
         command: yarn run deploy
