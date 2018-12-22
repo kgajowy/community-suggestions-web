@@ -13,7 +13,9 @@ jobs:
     docker:
     - image: *image_default
     working_directory: *working_directory
-
+    - add_ssh_keys:
+        fingerprints:
+        - "e0:e0:5b:78:04:7b:4a:b6:79:d5:31:6a:af:3c:22:c1"
     steps:
     - checkout
 
@@ -88,9 +90,6 @@ jobs:
     steps:
     - attach_workspace:
         at: .
-    - add_ssh_keys:
-        fingerprints:
-        - "28:91:db:cf:13:e8:ed:80:83:08:2e:d5:75:62:cd:36"
     - run:
         name: Running Code Coverage
         command: yarn run deploy
