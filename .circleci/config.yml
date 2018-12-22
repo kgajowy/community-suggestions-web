@@ -13,12 +13,11 @@ jobs:
     docker:
     - image: *image_default
     working_directory: *working_directory
+    steps:
     - add_ssh_keys:
         fingerprints:
         - "e0:e0:5b:78:04:7b:4a:b6:79:d5:31:6a:af:3c:22:c1"
-    steps:
     - checkout
-
     - restore_cache:
         keys:
         - v1-dependencies-{{ checksum "package.json" }}
