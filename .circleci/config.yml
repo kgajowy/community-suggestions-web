@@ -94,7 +94,7 @@ jobs:
         - "e0:e0:5b:78:04:7b:4a:b6:79:d5:31:6a:af:3c:22:c1"
     - run:
         name: Running Code Coverage
-        command: gh-pages -d build
+        command: ./node_modules/.bin/gh-pages -d build
     - persist_to_workspace:
         root: .
         paths:
