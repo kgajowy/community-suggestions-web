@@ -15,9 +15,9 @@
 
   - [x] normalize.css
   - [ ] Grid
-  - [ ] Toasts (via Context?)
+  - [ ] Toasts (with Redux)
   - [ ] i18n
-  - [ ] Nav Bar
+  - [x] Nav Bar
   - [ ] ...
 
 - [ ] Authorization
@@ -25,7 +25,7 @@
   - [ ] Log-in with GitHub (needs backend?)
   - [ ] LocalStorage & Session
   - [ ] Http Requests & Headers
-  - [ ] Avatar
+  - [x] Avatar
   - [ ] Log Out
 
 - [ ] Submit suggestion Form
@@ -38,6 +38,7 @@
   - [x] Styling
   - [x] Redux / Hooks / Redux + Hooks
   - [ ] Clear inputs after successful submit.
+  - [ ] Remember inputs in store
   - [ ] Connect API
   - [ ] ...
 
