@@ -23,12 +23,11 @@ const ShowToast = (payload: Toast): ShowAction => ({
 });
 
 export const notify = ({
-  duration = 1500,
+  duration = 2000,
   message,
   shownAt = new Date().getTime(),
 }: Toast): ThunkResult => {
   const toast = { duration, message, shownAt };
-  console.log(`ShowToast`, toast);
   return dispatch => {
     dispatch(ShowToast(toast));
 
