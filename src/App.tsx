@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { Normalize } from "styled-normalize";
 import { NavBar } from "./components/navbar/NavBar";
+import Toasts from "./components/toast/Toasts";
 import InitApp from "./InitApp";
 import { media } from "./shared/styles/media";
 import store from "./store";
@@ -43,6 +44,8 @@ class App extends Component {
                 <h1>Community Suggestions:</h1>
                 <CommunitySuggestions />
               </CenterColumn>
+
+              <Toasts />
             </>
           </ThemeProvider>
         </>
