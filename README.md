@@ -2,20 +2,18 @@
 
 # Roadmap - 1.0
 
-- [ ] Development
+- [x] Development
 
   - [x] tslint
   - [x] prettier
   - [x] husky
   - [x] CI
-  - [ ] configure & CI deployment to public server // `chore/ci-deploy`
-  - [ ] ...
 
 - [ ] App-wide tasks
 
   - [x] normalize.css
   - [ ] Grid
-  - [ ] Toasts (with Redux)
+  - [x] Toasts (with Redux)
   - [ ] i18n
   - [x] Nav Bar
   - [ ] ...
@@ -26,7 +24,7 @@
   - [ ] LocalStorage & Session
   - [ ] Http Requests & Headers
   - [x] Avatar
-  - [ ] Log Out
+  - [x] Log Out
 
 - [ ] Submit suggestion Form
 
@@ -75,6 +73,7 @@
 
 # Roadmap - 1.1
 
+- [ ] configure & CI deployment to public server // `chore/ci-deploy`
 - Admin Panel - approve Suggestions
 - Admin Panel - mark Suggestions as PAST/DONE; date
 - Web - sort by most upvotes
