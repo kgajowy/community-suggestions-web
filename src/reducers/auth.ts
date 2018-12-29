@@ -43,6 +43,6 @@ export const AuthReducer = (
         currentUser: action.payload,
       };
     default:
-      return initialState;
+      return state;
   }
 };

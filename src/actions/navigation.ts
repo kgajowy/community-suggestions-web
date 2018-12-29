@@ -1,8 +1,7 @@
 import { ThunkAction } from "redux-thunk";
 import { LoginDto, User } from "../auth/user";
-import { RootState } from "../reducers";
+import { AuthState } from "../reducers/auth";
 import { logIn } from "../shared/services/auth";
-import { getSuggestions } from "../shared/services/community-suggestions";
 
 export enum NavigationActionTypes {
   LogIn = "nav.login",
@@ -25,8 +24,8 @@ type LogInErrorAction = Action<NavigationActionTypes.LogInError, any>;
 
 type LogOutAction = Action<NavigationActionTypes.LogOut, null>;
 
-type ThunkResult = ThunkAction<void, RootState, undefined, AuthActions>;
-
+type ThunkResult = ThunkAction<void, AuthState, undefined, AuthActions>;
+// TODO logIn resets not its own state; i.e. is sent as well to SuggestionState ?
 export const LogIn = (loginData: LoginDto): ThunkResult => {
   console.log(`Log In`, loginData);
   return dispatch => {

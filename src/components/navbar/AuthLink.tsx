@@ -5,6 +5,7 @@ import { AuthActions, LogIn, LogOut } from "../../actions/navigation";
 
 import { User } from "../../auth/user";
 import { RootState } from "../../reducers";
+import { AuthState } from "../../reducers/auth";
 import { LoginLink } from "./components/LogInLink";
 import { LogoutLink } from "./components/LogoutLink";
 
@@ -35,18 +36,18 @@ const AuthLink: React.FunctionComponent<Props> = ({
 );
 
 const mapDispatchToProps = (
-  dispatch: ThunkDispatch<RootState, undefined, AuthActions>
+  dispatch: ThunkDispatch<AuthState, undefined, AuthActions>
 ): DispatchProps => ({
   logIn: () =>
     dispatch(LogIn({ email: "Test@domain.com", password: "qwerty" })),
   logOut: () => dispatch(LogOut()),
 });
 
-const mapStateToProps = (state: RootState): StateProps => ({
-  pending: state.auth.loginPending,
-  logOutPending: state.auth.logoutPending,
-  loggedIn: state.auth.loggedIn,
-  user: state.auth.currentUser,
+const mapStateToProps = ({ auth }: RootState): StateProps => ({
+  pending: auth.loginPending,
+  logOutPending: auth.logoutPending,
+  loggedIn: auth.loggedIn,
+  user: auth.currentUser,
 });
 
 export default connect<StateProps, DispatchProps, {}, RootState>(

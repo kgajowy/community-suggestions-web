@@ -1,6 +1,6 @@
 import {
   SuggestionActions,
-  SuggestionActionTypes
+  SuggestionActionTypes,
 } from "../actions/suggestions";
 import Suggestion from "../shared/interfaces/suggestion";
 
@@ -19,7 +19,7 @@ export const initialState: SuggestionsState = {
   error: null,
   submittedSuggestion: undefined,
   submitPending: false,
-  submitError: null
+  submitError: null,
 };
 
 export const SuggestionsReducer = (
@@ -33,7 +33,7 @@ export const SuggestionsReducer = (
         ...state,
         submitPending: true,
         submitError: null,
-        submittedSuggestion: action.payload
+        submittedSuggestion: action.payload,
       };
     // TODO block submitting when still loading all suggestions
     case SuggestionActionTypes.SubmitError:
@@ -41,36 +41,36 @@ export const SuggestionsReducer = (
       return {
         ...state,
         submitPending: false,
-        submitError: action.payload
+        submitError: action.payload,
       };
     case SuggestionActionTypes.SubmitOk:
       console.log(`>>> submit action ok`);
       return {
         ...state,
         submitPending: false,
-        suggestions: [action.payload!, ...state.suggestions]
+        suggestions: [action.payload!, ...state.suggestions],
       };
     case SuggestionActionTypes.Get:
       console.log(`>>> get action`);
       return {
         ...state,
-        pending: true
+        pending: true,
       };
     case SuggestionActionTypes.Acquired:
       console.log(`>>> acquire action`);
       return {
         ...state,
         pending: false,
-        suggestions: [...state.suggestions, ...action.payload!]
+        suggestions: [...state.suggestions, ...action.payload!],
       };
     case SuggestionActionTypes.Error:
       console.log(`>>> error action`);
       return {
         ...state,
         pending: false,
-        error: action.payload
+        error: action.payload,
       };
     default:
-      return initialState;
+      return state;
   }
 };
