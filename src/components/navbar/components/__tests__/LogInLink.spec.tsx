@@ -13,9 +13,6 @@ describe("when onClick is provided", () => {
   });
 
   it("shall render", () => {
-    // expect(wrapper.contains(welcome)).toBe(true);
-    // expect(wrapper.contains(welcome)).toEqual(true);
-    console.log(wrapper.debug());
     expect(wrapper).toBeTruthy();
   });
 
