@@ -8,7 +8,7 @@
   - [x] prettier
   - [x] husky
   - [x] CI
-  - [ ] configure & CI deployment to public server
+  - [ ] configure & CI deployment to public server // `chore/ci-deploy`
   - [ ] ...
 
 - [ ] App-wide tasks
