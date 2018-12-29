@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { styled } from "../../theme/styled";
-import { LogInLink } from "./components/LogInLink";
+import LogInLink from "./AuthLink";
 
 const List = styled.ul`
   list-style-type: none;

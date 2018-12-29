@@ -1,5 +1,7 @@
 import { ThunkAction } from "redux-thunk";
+import { LoginDto, User } from "../auth/user";
 import { RootState } from "../reducers";
+import { logIn } from "../shared/services/auth";
 import { getSuggestions } from "../shared/services/community-suggestions";
 
 export enum NavigationActionTypes {
@@ -17,22 +19,22 @@ interface Action<T, P> {
 
 type LogInAction = Action<NavigationActionTypes.LogIn, null>;
 
-type LogInOkAction = Action<
-  NavigationActionTypes.LogInOk,
-  any // TODO User object
->;
+type LogInOkAction = Action<NavigationActionTypes.LogInOk, User>;
 
 type LogInErrorAction = Action<NavigationActionTypes.LogInError, any>;
 
-type ThunkResult = ThunkAction<void, RootState, undefined, NavigationActions>;
+type LogOutAction = Action<NavigationActionTypes.LogOut, null>;
 
-export const LogIn = (): ThunkResult => {
-  console.log(`Log In`);
+type ThunkResult = ThunkAction<void, RootState, undefined, AuthActions>;
+
+export const LogIn = (loginData: LoginDto): ThunkResult => {
+  console.log(`Log In`, loginData);
   return dispatch => {
     dispatch({
       type: NavigationActionTypes.LogIn,
     });
-    getSuggestions()
+
+    logIn(loginData)
       .then(r => dispatch(LogInOk(r)))
       .catch(e => dispatch(LogInError(e)));
   };
@@ -50,4 +52,12 @@ export const LogInError = (payload: any): LogInErrorAction => ({
   payload,
 });
 
-export type NavigationActions = LogInAction | LogInOkAction | LogInErrorAction;
+export const LogOut = (): LogOutAction => ({
+  type: NavigationActionTypes.LogOut,
+});
+
+export type AuthActions =
+  | LogInAction
+  | LogInOkAction
+  | LogInErrorAction
+  | LogOutAction;
