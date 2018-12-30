@@ -15,9 +15,8 @@ export const LoginLink: React.FunctionComponent<LogInLinkProps> = ({
     <NamespacesConsumer>
       {t => (
         <>
-          {" "}
-          {t("navBar.login")} &nbsp;{" "}
-          <img src={ghMark} height="24px" width="24px" />{" "}
+          {t("navBar.login")}&nbsp;
+          <img src={ghMark} height="24px" width="24px" />
         </>
       )}
     </NamespacesConsumer>
