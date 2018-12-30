@@ -1,4 +1,5 @@
 import * as React from "react";
+import { WithNamespaces, withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { RootState } from "../reducers";
 import { default as SuggestionEntity } from "../shared/interfaces/suggestion";
@@ -10,15 +11,13 @@ interface StateProps {
   suggestions: SuggestionEntity[];
 }
 
-const CommunitySuggestions: React.FunctionComponent<StateProps> = ({
-  pending,
-  error,
-  suggestions,
-}) => {
+const CommunitySuggestions: React.FunctionComponent<
+  StateProps & WithNamespaces
+> = ({ pending, error, suggestions, t }) => {
   return (
     <>
-      {pending && <>Loading...</>}
-      {error && <>Error.</>}
+      {pending && <>{t("generics.loading")}</>}
+      {error && <>{t("generics.error")}</>}
       {!pending && !error && <Suggestions suggestions={suggestions} />}
     </>
   );
@@ -31,5 +30,5 @@ const mapStateToProps = ({ suggestions }: RootState): StateProps => ({
 });
 
 export default connect<StateProps, {}, {}, RootState>(mapStateToProps)(
-  CommunitySuggestions
+  withNamespaces()(CommunitySuggestions)
 ) as React.ComponentClass<{}>;

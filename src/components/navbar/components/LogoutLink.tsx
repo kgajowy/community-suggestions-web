@@ -1,4 +1,5 @@
 import * as React from "react";
+import { NamespacesConsumer } from "react-i18next";
 import { User } from "../../../auth/user";
 import { LinkElement } from "../LinkElement";
 
@@ -12,6 +13,13 @@ export const LogoutLink: React.FunctionComponent<LogoutLinkProps> = ({
   user,
 }) => (
   <LinkElement onClick={logOut}>
-    Log out &nbsp; <img src={user.avatar.url} height="24px" width="24px" />
+    <NamespacesConsumer>
+      {t => (
+        <>
+          {t("navBar.logout")} &nbsp;
+          <img src={user.avatar.url} height="24px" width="24px" />
+        </>
+      )}
+    </NamespacesConsumer>
   </LinkElement>
 );

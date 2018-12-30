@@ -1,11 +1,12 @@
 import * as React from "react";
+import { WithNamespaces, withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import { SuggestionActions, SuggestionSubmit } from "../actions/suggestions";
 import { notify, ToastActions } from "../actions/toast";
 import { RootState } from "../reducers";
 import Suggestion from "../shared/interfaces/suggestion";
-import { SubmitForm } from "./components/SubmitForm";
+import { Form } from "./components/SubmitForm";
 
 interface DispatchProps {
   submit: (suggestion: Suggestion) => any;
@@ -17,16 +18,16 @@ interface StateProps {
   loggedIn: boolean;
 }
 
-type Props = DispatchProps & StateProps;
+type Props = DispatchProps & StateProps & WithNamespaces;
 
 class SubmitSuggestion extends React.Component<Props> {
   public render() {
-    return <SubmitForm onSubmit={this.onSubmit} pending={this.props.pending} />;
+    return <Form onSubmit={this.onSubmit} pending={this.props.pending} />;
   }
 
   private onSubmit = (suggestion: Suggestion) => {
     if (!this.props.loggedIn) {
-      this.props.showToast("Please log in first.");
+      this.props.showToast(this.props.t("submitForm.unauthorized"));
     } else {
       this.props.submit(suggestion);
     }
@@ -49,4 +50,4 @@ const mapDispatchToProps = (
 export default connect<StateProps, DispatchProps, {}, RootState>(
   mapStateToProps,
   mapDispatchToProps
-)(SubmitSuggestion) as React.ComponentClass<{}>;
+)(withNamespaces()(SubmitSuggestion)) as React.ComponentClass<{}>;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NamespacesConsumer } from "react-i18next";
 import { Provider } from "react-redux";
 import { Normalize } from "styled-normalize";
 import { NavBar } from "./components/navbar/NavBar";
@@ -38,12 +39,16 @@ class App extends Component {
           <ThemeProvider theme={defaultTheme}>
             <>
               <NavBar />
-              <CenterColumn>
-                <h1>Hello WarsawJS Community!</h1>
-                <SubmitSuggestion />
-                <h1>Community Suggestions:</h1>
-                <CommunitySuggestions />
-              </CenterColumn>
+              <NamespacesConsumer>
+                {t => (
+                  <CenterColumn>
+                    <h1>{t("pages.main.formHeading")}</h1>
+                    <SubmitSuggestion />
+                    <h1>{t("pages.main.resultsHeading")}</h1>
+                    <CommunitySuggestions />
+                  </CenterColumn>
+                )}
+              </NamespacesConsumer>
 
               <Toasts />
             </>
