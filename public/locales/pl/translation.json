@@ -1,0 +1,26 @@
+{
+  "submitForm": {
+    "inputTitlePlaceholder": "Nazwa Twojego pomysłu.",
+    "inputDescPlaceholder": "Opisz szczegóły pomysłu.",
+    "submitText": "Wyślij",
+    "unauthorized": "Musisz być zalogowany."
+  },
+  "navBar": {
+    "login": "Zaloguj",
+    "logout": "Wyloguj"
+  },
+  "pages": {
+    "main": {
+      "formHeading": "Cześć Społeczności WarsawJS!",
+      "resultsHeading": "Propozycje społeczności:"
+    }
+  },
+  "suggestions": {
+    "supporters": "Wspierają",
+    "voters": "Popierają"
+  },
+  "generics": {
+    "loading": "Ładowanie...",
+    "error": "Nieznany błąd, proszę spróbować ponownie."
+  }
+}

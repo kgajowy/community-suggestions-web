@@ -1,0 +1,26 @@
+{
+  "submitForm": {
+    "inputTitlePlaceholder": "Rough title/name of your idea.",
+    "inputDescPlaceholder": "Describe your idea in details!",
+    "submitText": "Submit",
+    "unauthorized": "Please log in first."
+  },
+  "navBar": {
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "pages": {
+    "main": {
+      "formHeading": "Hello WarsawJS Community!",
+      "resultsHeading": "Community Suggestions:"
+    }
+  },
+  "suggestions": {
+    "supporters": "Supporters",
+    "voters": "Voters"
+  },
+  "generics": {
+    "loading": "Loading...",
+    "error": "Unknown error, please try again."
+  }
+}

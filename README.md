@@ -9,14 +9,12 @@
   - [x] husky
   - [x] CI
 
-- [ ] App-wide tasks
+- [x] App-wide tasks
 
   - [x] normalize.css
-  - [ ] Grid
   - [x] Toasts (with Redux)
-  - [ ] i18n
+  - [x] i18n
   - [x] Nav Bar
-  - [ ] ...
 
 - [ ] Authorization
 

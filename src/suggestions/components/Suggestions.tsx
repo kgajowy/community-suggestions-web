@@ -2,7 +2,7 @@ import * as React from "react";
 import Suggestion from "../../shared/interfaces/suggestion";
 import { styled } from "../../theme/styled";
 import { StyledProps } from "../../theme/styled-props";
-import { Suggestion as SuggestionView } from "./Suggestion";
+import SuggestionView from "./Suggestion";
 
 interface SuggestionsProps {
   suggestions: Suggestion[];

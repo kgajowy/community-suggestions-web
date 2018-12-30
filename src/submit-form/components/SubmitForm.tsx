@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FunctionComponent, useState } from "react";
+import { WithNamespaces, withNamespaces } from "react-i18next";
 import { Button } from "../../shared/components/Button";
 import { Spinner } from "../../shared/components/Spinner";
 import Suggestion from "../../shared/interfaces/suggestion";
@@ -57,9 +58,10 @@ const Submit = styled(Button)`
   transition: all 300ms ease-in;
 `;
 
-export const SubmitForm: FunctionComponent<SubmitForm> = ({
+const SubmitForm: FunctionComponent<SubmitForm & WithNamespaces> = ({
   onSubmit,
   pending,
+  t,
 }) => {
   const [title, setTitle] = useState<string>("");
   const onTitleChange = (event: React.FormEvent<HTMLInputElement>) =>
@@ -73,9 +75,9 @@ export const SubmitForm: FunctionComponent<SubmitForm> = ({
 
   const inputsFilled = Boolean(title && description);
 
-  const inputTitlePlaceholder = "Rough title/name of your idea.";
-  const inputDescPlaceholder = "Describe your idea in details!";
-  const submitText = "Submit";
+  const inputTitlePlaceholder = t("submitForm.inputTitlePlaceholder");
+  const inputDescPlaceholder = t("submitForm.inputDescPlaceholder");
+  const submitText = t("submitForm.submitText");
 
   return (
     <Container>
@@ -100,3 +102,7 @@ export const SubmitForm: FunctionComponent<SubmitForm> = ({
     </Container>
   );
 };
+
+export const Form = withNamespaces()(SubmitForm) as React.FunctionComponent<
+  SubmitForm
+>;
