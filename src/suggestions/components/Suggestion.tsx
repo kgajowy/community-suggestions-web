@@ -1,6 +1,8 @@
 import * as React from "react";
 import { WithNamespaces, withNamespaces } from "react-i18next";
+import Support from "../../activity-buttons/support/Support";
 import { Avatar } from "../../people/Avatar";
+import { Button } from "../../shared/components/Button";
 import { default as SuggestionInterface } from "../../shared/interfaces/suggestion";
 import { inputStyles } from "../../submit-form/components/input-styles";
 import { styled } from "../../theme/styled";
@@ -33,18 +35,22 @@ const H4 = styled.h4`
 
 export const Suggestion: React.FunctionComponent<
   SuggestionInterface & WithNamespaces
-> = ({ title, description, supporters, voters, t }) => (
+> = ({ t, ...suggestion }) => (
   <Container>
-    <H3>{title}</H3>
-    <p>{description}</p>
+    <H3>{suggestion.title}</H3>
+    <p>{suggestion.description}</p>
     <H4>{t("suggestions.supporters")}</H4>
-    {supporters.map((s, i) => (
+    {suggestion.supporters.map((s, i) => (
       <Avatar url={s.picture.medium} key={i} />
     ))}
+    <br />
+    <Support suggestion={suggestion} />
     <H4>{t("suggestions.voters")}</H4>
-    {voters.map((s, i) => (
+    {suggestion.voters.map((s, i) => (
       <CondensedAvatar url={s.picture.medium} key={i} />
     ))}
+    <br />
+    <Button>Zagłosuj</Button>
   </Container>
 );
 

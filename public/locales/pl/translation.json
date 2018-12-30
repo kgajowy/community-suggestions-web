@@ -19,6 +19,12 @@
     "supporters": "Wspierają",
     "voters": "Popierają"
   },
+  "suggestion": {
+    "vote": "Daj znać, że ten pomyśl Ci się podoba 👍",
+    "voted": "❤️ Lubię ten pomysł ❤️",
+    "support": "Chcę pomóc w realizacji 🆘",
+    "supported": "💪 Pomagam w realizacji 💪"
+  },
   "generics": {
     "loading": "Ładowanie...",
     "error": "Nieznany błąd, proszę spróbować ponownie."
