@@ -1,5 +1,6 @@
 import axios from "axios";
 import { uniqueId } from "lodash";
+import { User } from "../../auth/user";
 import Suggestion from "../interfaces/suggestion";
 
 export const getSuggestions = async (): Promise<Suggestion[]> => {
@@ -18,10 +19,20 @@ export const getSuggestions = async (): Promise<Suggestion[]> => {
   }));
 };
 
-export const submitSuggestion = async (s: Suggestion): Promise<Suggestion> => {
+export const submitSuggestion = (s: Suggestion): Promise<Suggestion> => {
   return new Promise<Suggestion>(resolve => {
     setTimeout(() => {
       resolve(s);
     }, 1500);
+  });
+};
+
+export const support = (s: Suggestion, u: User): Promise<Suggestion> => {
+  return new Promise(resolve => {
+    const fetchedSuggestion: Suggestion = {
+      ...s,
+      supporters: [...s.supporters, u],
+    };
+    resolve(fetchedSuggestion);
   });
 };

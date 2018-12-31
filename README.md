@@ -36,7 +36,7 @@
   - [ ] Clear inputs after successful submit.
   - [ ] Remember inputs in store
   - [ ] Connect API
-  - [ ] ...
+  - [ ] Allow to choose between Supporter / Voter
 
 - [ ] List Suggestions
 
@@ -60,14 +60,14 @@
   - [ ] Controller
   - [ ] Show Toast when preforming denied operation (not logged)
   - [ ] Show Toast when preforming denied operation (voting down own suggestion)
-  - [ ] API; should be voted by the Submitter automatically
+  - [ ] API
 
 - [ ] Support/Leave Suggestion (Donate/Join/Attend)
   - [ ] View Components - Support / Leave
   - [ ] Controller
   - [ ] Show Toast when preforming denied operation (not logged)
   - [ ] Show Toast when preforming denied operation (cannot leave own)
-  - [ ] API; should be supported by the Submitter automatically
+  - [ ] API
 
 # Roadmap - 1.1
 

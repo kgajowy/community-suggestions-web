@@ -1,10 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
-import { AuthActions, LogIn, LogOut } from "../../actions/navigation";
+import { AuthActions } from "../../actions/navigation";
+import { SupportSuggestion } from "../../actions/support";
 import { User } from "../../auth/user";
 import { RootState } from "../../reducers";
-import { AuthState } from "../../reducers/auth";
 import Suggestion from "../../shared/interfaces/suggestion";
 import SupportButton from "./SupportButton";
 
@@ -13,8 +13,7 @@ interface OwnProps {
 }
 
 interface DispatchProps {
-  logIn: () => any;
-  logOut: () => any;
+  support: (s: Suggestion) => any;
 }
 
 interface StateProps {
@@ -26,18 +25,20 @@ type Props = DispatchProps & StateProps & OwnProps;
 
 export class Support extends React.Component<Props> {
   public render() {
-    return <SupportButton onClick={console.log} />;
+    return <SupportButton onClick={this.support} />;
   }
+
+  private support = () => {
+    this.props.support(this.props.suggestion);
+  };
 }
 
 // TODO add toast show fn
 // TODO check if in given suggestion current User is a Supporter already
 const mapDispatchToProps = (
-  dispatch: ThunkDispatch<AuthState, undefined, AuthActions>
+  dispatch: ThunkDispatch<RootState, undefined, AuthActions>
 ): DispatchProps => ({
-  logIn: () =>
-    dispatch(LogIn({ email: "Test@domain.com", password: "qwerty" })),
-  logOut: () => dispatch(LogOut()),
+  support: (s: Suggestion) => dispatch(SupportSuggestion(s)),
 });
 
 const mapStateToProps = ({ auth }: RootState): StateProps => ({

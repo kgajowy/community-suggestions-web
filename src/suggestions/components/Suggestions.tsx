@@ -19,7 +19,7 @@ export const Suggestions: React.FunctionComponent<
 > = ({ suggestions = [] }) => (
   <Container>
     {suggestions.map(s => (
-      <SuggestionView {...s} key={s.id} />
+      <SuggestionView suggestion={s} key={s.id} />
     ))}
   </Container>
 );

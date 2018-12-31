@@ -4,10 +4,14 @@ export const logIn = async (loginData: LoginDto): Promise<User> => {
   await delay();
   return {
     email: loginData.email,
-    avatar: {
-      url: "https://api.adorable.io/avatars/76/rand@adorable.io.png",
+    picture: {
+      medium: "https://api.adorable.io/avatars/76/rand@adorable.io.png",
     },
-    displayName: "Kamil Gajowy",
+    name: "Kamil",
+    lastName: "Gajowy",
+    profile: "No clue",
+    suggestions: [],
+    votes: [],
   };
 };
 

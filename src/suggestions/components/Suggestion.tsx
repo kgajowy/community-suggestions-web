@@ -33,9 +33,13 @@ const H4 = styled.h4`
   color: black;
 `;
 
+interface SuggestionProps {
+  suggestion: SuggestionInterface;
+}
+
 export const Suggestion: React.FunctionComponent<
-  SuggestionInterface & WithNamespaces
-> = ({ t, ...suggestion }) => (
+  SuggestionProps & WithNamespaces
+> = ({ t, suggestion }) => (
   <Container>
     <H3>{suggestion.title}</H3>
     <p>{suggestion.description}</p>

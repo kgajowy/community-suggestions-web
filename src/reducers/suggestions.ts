@@ -2,6 +2,10 @@ import {
   SuggestionActions,
   SuggestionActionTypes,
 } from "../actions/suggestions";
+import {
+  SupportActionTypes,
+  SupportSuggestionActions,
+} from "../actions/support";
 import Suggestion from "../shared/interfaces/suggestion";
 
 export interface SuggestionsState {
@@ -24,11 +28,11 @@ export const initialState: SuggestionsState = {
 
 export const SuggestionsReducer = (
   state: SuggestionsState = initialState,
-  action: SuggestionActions
+  action: SuggestionActions & SupportSuggestionActions
 ): SuggestionsState => {
+  console.log(`SuggestionsReducer`, action.type);
   switch (action.type) {
     case SuggestionActionTypes.Submit:
-      console.log(`>>> submit action`);
       return {
         ...state,
         submitPending: true,
@@ -37,38 +41,40 @@ export const SuggestionsReducer = (
       };
     // TODO block submitting when still loading all suggestions
     case SuggestionActionTypes.SubmitError:
-      console.log(`>>> submit action error`);
       return {
         ...state,
         submitPending: false,
         submitError: action.payload,
       };
     case SuggestionActionTypes.SubmitOk:
-      console.log(`>>> submit action ok`);
       return {
         ...state,
         submitPending: false,
         suggestions: [action.payload!, ...state.suggestions],
       };
     case SuggestionActionTypes.Get:
-      console.log(`>>> get action`);
       return {
         ...state,
         pending: true,
       };
     case SuggestionActionTypes.Acquired:
-      console.log(`>>> acquire action`);
       return {
         ...state,
         pending: false,
         suggestions: [...state.suggestions, ...action.payload!],
       };
     case SuggestionActionTypes.Error:
-      console.log(`>>> error action`);
       return {
         ...state,
         pending: false,
         error: action.payload,
+      };
+    case SupportActionTypes.SupportSuggestionOk:
+      return {
+        ...state,
+        suggestions: state.suggestions.map(s => {
+          return s.id === action.payload.id ? action.payload : s;
+        }),
       };
     default:
       return state;
