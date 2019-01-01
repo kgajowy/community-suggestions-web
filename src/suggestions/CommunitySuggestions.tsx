@@ -2,6 +2,7 @@ import * as React from "react";
 import { WithNamespaces, withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { RootState } from "../reducers";
+import { selectSuggestions } from "../selectors/suggestions";
 import { default as SuggestionEntity } from "../shared/interfaces/suggestion";
 import { Suggestions } from "./components/Suggestions";
 
@@ -26,7 +27,7 @@ const CommunitySuggestions: React.FunctionComponent<
 const mapStateToProps = ({ suggestions }: RootState): StateProps => ({
   pending: suggestions.pending,
   error: suggestions.error,
-  suggestions: suggestions.suggestions,
+  suggestions: selectSuggestions(suggestions),
 });
 
 export default connect<StateProps, {}, {}, RootState>(mapStateToProps)(

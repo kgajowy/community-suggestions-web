@@ -8,9 +8,15 @@ import {
 } from "../actions/support";
 import Suggestion from "../shared/interfaces/suggestion";
 
+interface SuggestionWrapper {
+  id: string;
+  suggestion: Suggestion;
+  changePending: boolean;
+}
+
 export interface SuggestionsState {
   pending: boolean;
-  suggestions: Suggestion[];
+  suggestions: SuggestionWrapper[];
   error: any;
   submittedSuggestion?: Suggestion;
   submitPending: boolean;
@@ -61,7 +67,14 @@ export const SuggestionsReducer = (
       return {
         ...state,
         pending: false,
-        suggestions: [...state.suggestions, ...action.payload!],
+        suggestions: [
+          ...state.suggestions,
+          ...(action.payload as Suggestion[]).map(s => ({
+            id: s.id,
+            suggestion: s,
+            changePending: false,
+          })),
+        ],
       };
     case SuggestionActionTypes.Error:
       return {
