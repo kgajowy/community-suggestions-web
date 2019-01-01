@@ -1,4 +1,5 @@
 import * as React from "react";
+import { WithNamespaces, withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import { AuthActions } from "../../actions/navigation";
@@ -21,11 +22,21 @@ interface StateProps {
   currentUser: User;
 }
 
-type Props = DispatchProps & StateProps & OwnProps;
+type Props = DispatchProps & StateProps & OwnProps & WithNamespaces;
 
 export class Support extends React.Component<Props> {
   public render() {
-    return <SupportButton onClick={this.support} />;
+    const { t, suggestion, currentUser } = this.props;
+    const alreadySupported =
+      currentUser &&
+      currentUser.suggestions.filter(s => {
+        return suggestion.id === s.id;
+      }).length > 0;
+    const buttonText = alreadySupported
+      ? t("suggestion.supported")
+      : t("suggestion.support");
+
+    return <SupportButton onClick={this.support}>{buttonText}</SupportButton>;
   }
 
   private support = () => {
@@ -34,7 +45,7 @@ export class Support extends React.Component<Props> {
 }
 
 // TODO add toast show fn
-// TODO check if in given suggestion current User is a Supporter already
+// TODO add pending "submit" state
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, undefined, AuthActions>
 ): DispatchProps => ({
@@ -49,4 +60,4 @@ const mapStateToProps = ({ auth }: RootState): StateProps => ({
 export default connect<StateProps, DispatchProps, OwnProps, RootState>(
   mapStateToProps,
   mapDispatchToProps
-)(Support) as React.ComponentClass<OwnProps>;
+)(withNamespaces()(Support)) as React.ComponentClass<OwnProps>;

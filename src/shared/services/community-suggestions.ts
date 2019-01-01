@@ -29,9 +29,13 @@ export const submitSuggestion = (s: Suggestion): Promise<Suggestion> => {
 
 export const support = (s: Suggestion, u: User): Promise<Suggestion> => {
   return new Promise(resolve => {
+    const refreshedUser: User = {
+      ...u,
+      suggestions: [...u.suggestions, s],
+    };
     const fetchedSuggestion: Suggestion = {
       ...s,
-      supporters: [...s.supporters, u],
+      supporters: [...s.supporters, refreshedUser],
     };
     resolve(fetchedSuggestion);
   });
