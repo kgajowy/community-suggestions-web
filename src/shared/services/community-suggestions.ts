@@ -2,6 +2,7 @@ import axios from "axios";
 import { uniqueId } from "lodash";
 import { User } from "../../auth/user";
 import Suggestion from "../interfaces/suggestion";
+import { delay } from "./auth";
 
 export const getSuggestions = async (): Promise<Suggestion[]> => {
   const supporters = (await axios.get("https://randomuser.me/api/?results=3"))
@@ -28,7 +29,8 @@ export const submitSuggestion = (s: Suggestion): Promise<Suggestion> => {
 };
 
 export const support = (s: Suggestion, u: User): Promise<Suggestion> => {
-  return new Promise(resolve => {
+  return new Promise(async resolve => {
+    await delay();
     const refreshedUser: User = {
       ...u,
       suggestions: [...u.suggestions, s],

@@ -8,7 +8,7 @@ import {
 } from "../actions/support";
 import Suggestion from "../shared/interfaces/suggestion";
 
-interface SuggestionWrapper {
+export interface SuggestionState {
   id: string;
   suggestion: Suggestion;
   changePending: boolean;
@@ -16,7 +16,8 @@ interface SuggestionWrapper {
 
 export interface SuggestionsState {
   pending: boolean;
-  suggestions: SuggestionWrapper[];
+  suggestions: Suggestion[];
+  suggestionStates: SuggestionState[];
   error: any;
   submittedSuggestion?: Suggestion;
   submitPending: boolean;
@@ -26,6 +27,7 @@ export interface SuggestionsState {
 export const initialState: SuggestionsState = {
   pending: false,
   suggestions: [],
+  suggestionStates: [],
   error: null,
   submittedSuggestion: undefined,
   submitPending: false,
@@ -57,6 +59,14 @@ export const SuggestionsReducer = (
         ...state,
         submitPending: false,
         suggestions: [action.payload!, ...state.suggestions],
+        suggestionStates: [
+          {
+            id: action.payload.id,
+            suggestion: action.payload,
+            changePending: false,
+          },
+          ...state.suggestionStates,
+        ],
       };
     case SuggestionActionTypes.Get:
       return {
@@ -67,14 +77,12 @@ export const SuggestionsReducer = (
       return {
         ...state,
         pending: false,
-        suggestions: [
-          ...state.suggestions,
-          ...(action.payload as Suggestion[]).map(s => ({
-            id: s.id,
-            suggestion: s,
-            changePending: false,
-          })),
-        ],
+        suggestions: action.payload,
+        suggestionStates: (action.payload as Suggestion[]).map(s => ({
+          id: s.id,
+          suggestion: s,
+          changePending: false,
+        })),
       };
     case SuggestionActionTypes.Error:
       return {
@@ -82,11 +90,23 @@ export const SuggestionsReducer = (
         pending: false,
         error: action.payload,
       };
+    case SupportActionTypes.SupportSuggestionPending:
+      return {
+        ...state,
+        suggestionStates: state.suggestionStates.map(s => {
+          return s.id === action.payload.id ? { ...s, changePending: true } : s;
+        }),
+      };
     case SupportActionTypes.SupportSuggestionOk:
       return {
         ...state,
         suggestions: state.suggestions.map(s => {
           return s.id === action.payload.id ? action.payload : s;
+        }),
+        suggestionStates: state.suggestionStates.map(s => {
+          return s.id === action.payload.id
+            ? { ...s, changePending: false }
+            : s;
         }),
       };
     default:

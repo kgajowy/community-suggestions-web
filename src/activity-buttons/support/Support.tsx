@@ -6,6 +6,7 @@ import { AuthActions } from "../../actions/navigation";
 import { SupportSuggestion } from "../../actions/support";
 import { User } from "../../auth/user";
 import { RootState } from "../../reducers";
+import { getSuggestionState } from "../../selectors/suggestion-state";
 import Suggestion from "../../shared/interfaces/suggestion";
 import SupportButton from "./SupportButton";
 
@@ -20,13 +21,14 @@ interface DispatchProps {
 interface StateProps {
   loggedIn: boolean;
   currentUser: User;
+  pending: boolean;
 }
 
 type Props = DispatchProps & StateProps & OwnProps & WithNamespaces;
 
 export class Support extends React.Component<Props> {
   public render() {
-    const { t, suggestion, currentUser } = this.props;
+    const { t, suggestion, currentUser, pending } = this.props;
     const alreadySupported =
       currentUser &&
       currentUser.suggestions.filter(s => {
@@ -36,7 +38,11 @@ export class Support extends React.Component<Props> {
       ? t("suggestion.supported")
       : t("suggestion.support");
 
-    return <SupportButton onClick={this.support}>{buttonText}</SupportButton>;
+    return (
+      <SupportButton onClick={this.support} pending={pending}>
+        {buttonText}
+      </SupportButton>
+    );
   }
 
   private support = () => {
@@ -45,17 +51,25 @@ export class Support extends React.Component<Props> {
 }
 
 // TODO add toast show fn
-// TODO add pending "submit" state
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, undefined, AuthActions>
 ): DispatchProps => ({
   support: (s: Suggestion) => dispatch(SupportSuggestion(s)),
 });
 
-const mapStateToProps = ({ auth }: RootState): StateProps => ({
-  loggedIn: auth.loggedIn,
-  currentUser: auth.currentUser!,
-});
+const mapStateToProps = (
+  { auth, suggestions }: RootState,
+  { suggestion }: OwnProps
+): StateProps => {
+  const suggestionState = getSuggestionState(suggestions, {
+    id: suggestion.id,
+  });
+  return {
+    loggedIn: auth.loggedIn,
+    currentUser: auth.currentUser!,
+    pending: suggestionState ? suggestionState.changePending : false,
+  };
+};
 
 export default connect<StateProps, DispatchProps, OwnProps, RootState>(
   mapStateToProps,

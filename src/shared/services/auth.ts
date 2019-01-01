@@ -15,7 +15,7 @@ export const logIn = async (loginData: LoginDto): Promise<User> => {
   };
 };
 
-const delay = () => {
+export const delay = () => {
   return new Promise(resolve => {
     setTimeout(resolve, 1000);
   });
