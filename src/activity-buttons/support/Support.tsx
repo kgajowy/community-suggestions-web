@@ -4,19 +4,26 @@ import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import { AuthActions } from "../../actions/navigation";
 import { SupportSuggestion } from "../../actions/support";
+import { ToastActions } from "../../actions/toast";
 import { User } from "../../auth/user";
 import { RootState } from "../../reducers";
 import { getSuggestionState } from "../../selectors/suggestion-state";
 import Suggestion from "../../shared/interfaces/suggestion";
+import {
+  toastDispatch,
+  ToastDispatchProps,
+} from "../../shared/props/dispatch-props";
 import SupportButton from "./SupportButton";
 
 interface OwnProps {
   suggestion: Suggestion;
 }
 
-interface DispatchProps {
+interface Dispatches {
   support: (s: Suggestion) => any;
 }
+
+type DispatchProps = Dispatches & ToastDispatchProps;
 
 interface StateProps {
   loggedIn: boolean;
@@ -46,15 +53,19 @@ export class Support extends React.Component<Props> {
   }
 
   private support = () => {
-    this.props.support(this.props.suggestion);
+    if (!this.props.loggedIn) {
+      this.props.showToast(this.props.t("suggestion.unauthorized"));
+    } else {
+      this.props.support(this.props.suggestion);
+    }
   };
 }
 
-// TODO add toast show fn
 const mapDispatchToProps = (
-  dispatch: ThunkDispatch<RootState, undefined, AuthActions>
+  dispatch: ThunkDispatch<RootState, undefined, AuthActions & ToastActions>
 ): DispatchProps => ({
   support: (s: Suggestion) => dispatch(SupportSuggestion(s)),
+  ...toastDispatch(dispatch),
 });
 
 const mapStateToProps = (

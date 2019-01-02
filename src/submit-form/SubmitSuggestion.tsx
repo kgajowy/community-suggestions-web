@@ -3,19 +3,24 @@ import { WithNamespaces, withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import { SuggestionActions, SuggestionSubmit } from "../actions/suggestions";
-import { notify, ToastActions } from "../actions/toast";
+import { ToastActions } from "../actions/toast";
 import { User } from "../auth/user";
 import { RootState } from "../reducers";
 import {
   NewSuggestion,
   NewSuggestionInput,
 } from "../shared/interfaces/suggestion";
+import {
+  toastDispatch,
+  ToastDispatchProps,
+} from "../shared/props/dispatch-props";
 import { Form } from "./components/SubmitForm";
 
-interface DispatchProps {
+interface Dispatches {
   submit: (suggestion: NewSuggestion) => any;
-  showToast: (message: string) => any;
 }
+
+type DispatchProps = ToastDispatchProps & Dispatches;
 
 interface StateProps {
   pending: boolean;
@@ -53,7 +58,7 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<any, undefined, SuggestionActions & ToastActions>
 ): DispatchProps => ({
   submit: (suggestion: NewSuggestion) => dispatch(SuggestionSubmit(suggestion)),
-  showToast: (message: string) => dispatch(notify({ message })),
+  ...toastDispatch(dispatch),
 });
 
 export default connect<StateProps, DispatchProps, {}, RootState>(

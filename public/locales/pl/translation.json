@@ -23,7 +23,8 @@
     "vote": "Daj znać, że ten pomyśl Ci się podoba 👍",
     "voted": "❤️ Lubię ten pomysł ❤️",
     "support": "Chcę pomóc w realizacji 🆘",
-    "supported": "💪 Pomagam w realizacji 💪"
+    "supported": "💪 Pomagam w realizacji 💪",
+    "unauthorized": "Świetnie, dzięki! - ale najpierw musisz się zalogować."
   },
   "generics": {
     "loading": "Ładowanie...",

@@ -4,7 +4,7 @@ import { styled } from "../../../theme/styled";
 import { Toast } from "./Toast";
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
 `;
