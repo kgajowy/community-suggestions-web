@@ -1,6 +1,6 @@
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../reducers";
-import Suggestion from "../shared/interfaces/suggestion";
+import Suggestion, { NewSuggestion } from "../shared/interfaces/suggestion";
 import {
   getSuggestions,
   submitSuggestion,
@@ -26,7 +26,10 @@ type SuggestionAcquiredAction = Action<
   Suggestion[]
 >;
 type SuggestionErrorAction = Action<SuggestionActionTypes.Error, any>;
-type SuggestionSubmitAction = Action<SuggestionActionTypes.Submit, Suggestion>;
+type SuggestionSubmitAction = Action<
+  SuggestionActionTypes.Submit,
+  NewSuggestion
+>;
 type SuggestionSubmitErrorAction = Action<
   SuggestionActionTypes.SubmitError,
   any
@@ -63,7 +66,7 @@ export const SuggestionsError = (payload: any): SuggestionErrorAction => ({
   payload,
 });
 
-export const SuggestionSubmit = (payload: Suggestion): ThunkResult => {
+export const SuggestionSubmit = (payload: NewSuggestion): ThunkResult => {
   console.log(`SuggestionSubmit 1`);
   return dispatch => {
     dispatch({

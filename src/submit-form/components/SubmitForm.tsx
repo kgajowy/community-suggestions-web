@@ -3,13 +3,13 @@ import { FunctionComponent, useState } from "react";
 import { WithNamespaces, withNamespaces } from "react-i18next";
 import { Button } from "../../shared/components/Button";
 import { Spinner } from "../../shared/components/Spinner";
-import Suggestion from "../../shared/interfaces/suggestion";
+import { NewSuggestionInput } from "../../shared/interfaces/suggestion";
 import { styled } from "../../theme/styled";
 import { SubmitDescription } from "./SubmitDescription";
 import { SubmitName } from "./SubmitName";
 
 export interface SubmitForm {
-  onSubmit: (suggestion: Suggestion) => void;
+  onSubmit: (suggestion: NewSuggestionInput) => void;
   pending: boolean;
 }
 
@@ -44,8 +44,7 @@ const SubmitForm: FunctionComponent<SubmitForm & WithNamespaces> = ({
   const [description, setDescription] = useState<string>("");
   const onDescChange = (event: React.FormEvent<HTMLTextAreaElement>) =>
     setDescription(event.currentTarget.value);
-  const onClick = () =>
-    onSubmit({ title, description, voters: [], supporters: [], id: "" });
+  const onClick = () => onSubmit({ title, description });
 
   const inputsFilled = Boolean(title && description);
 

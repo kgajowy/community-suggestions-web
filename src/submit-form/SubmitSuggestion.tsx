@@ -4,18 +4,23 @@ import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import { SuggestionActions, SuggestionSubmit } from "../actions/suggestions";
 import { notify, ToastActions } from "../actions/toast";
+import { User } from "../auth/user";
 import { RootState } from "../reducers";
-import Suggestion from "../shared/interfaces/suggestion";
+import {
+  NewSuggestion,
+  NewSuggestionInput,
+} from "../shared/interfaces/suggestion";
 import { Form } from "./components/SubmitForm";
 
 interface DispatchProps {
-  submit: (suggestion: Suggestion) => any;
+  submit: (suggestion: NewSuggestion) => any;
   showToast: (message: string) => any;
 }
 
 interface StateProps {
   pending: boolean;
   loggedIn: boolean;
+  currentUser: User | undefined;
 }
 
 type Props = DispatchProps & StateProps & WithNamespaces;
@@ -25,11 +30,14 @@ class SubmitSuggestion extends React.Component<Props> {
     return <Form onSubmit={this.onSubmit} pending={this.props.pending} />;
   }
 
-  private onSubmit = (suggestion: Suggestion) => {
+  private onSubmit = (suggestion: NewSuggestionInput) => {
     if (!this.props.loggedIn) {
       this.props.showToast(this.props.t("submitForm.unauthorized"));
     } else {
-      this.props.submit(suggestion);
+      this.props.submit({
+        ...suggestion,
+        authorId: this.props.currentUser!.id,
+      });
     }
   };
 }
@@ -37,13 +45,14 @@ class SubmitSuggestion extends React.Component<Props> {
 const mapStateToProps = (state: RootState): StateProps => ({
   pending: state.suggestions.submitPending,
   loggedIn: state.auth.loggedIn,
+  currentUser: state.auth.currentUser,
 });
 // TODO pick if wants to be a supporter or voter
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<any, undefined, SuggestionActions & ToastActions>
 ): DispatchProps => ({
-  submit: (suggestion: Suggestion) => dispatch(SuggestionSubmit(suggestion)),
+  submit: (suggestion: NewSuggestion) => dispatch(SuggestionSubmit(suggestion)),
   showToast: (message: string) => dispatch(notify({ message })),
 });
 

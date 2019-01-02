@@ -3,6 +3,7 @@ import { LoginDto, User } from "../../auth/user";
 export const logIn = async (loginData: LoginDto): Promise<User> => {
   await delay();
   return {
+    id: "" + Math.floor(Math.random() * 1000),
     email: loginData.email,
     picture: {
       medium: "https://api.adorable.io/avatars/76/rand@adorable.io.png",
