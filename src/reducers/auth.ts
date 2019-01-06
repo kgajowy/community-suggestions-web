@@ -1,4 +1,8 @@
 import { AuthActions, NavigationActionTypes } from "../actions/navigation";
+import {
+  SupportActionTypes,
+  SupportSuggestionActions,
+} from "../actions/support";
 import { User } from "../auth/user";
 
 export interface AuthState {
@@ -19,8 +23,9 @@ export const initialState: AuthState = {
 
 export const AuthReducer = (
   state: AuthState = initialState,
-  action: AuthActions
+  action: AuthActions & SupportSuggestionActions
 ): AuthState => {
+  console.log(`AuthReducer`, action.type);
   switch (action.type) {
     case NavigationActionTypes.LogIn:
       return {
@@ -41,6 +46,17 @@ export const AuthReducer = (
         loginPending: false,
         loggedIn: true,
         currentUser: action.payload,
+      };
+    case SupportActionTypes.SupportSuggestionOk:
+      if (!state.currentUser) {
+        return state;
+      }
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          suggestions: [...state.currentUser!.suggestions, action.payload],
+        },
       };
     default:
       return state;

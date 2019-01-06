@@ -19,6 +19,13 @@
     "supporters": "Supporters",
     "voters": "Voters"
   },
+  "suggestion": {
+    "vote": "Let us know if you like this idea! 👍",
+    "voted": "❤️ I like this idea! ❤️",
+    "support": "I want to help in making this happen! 🆘",
+    "supported": "💪 I am already supporting this idea! 💪",
+    "unauthorized": "Wow thanks - but you need to log in first."
+  },
   "generics": {
     "loading": "Loading...",
     "error": "Unknown error, please try again."

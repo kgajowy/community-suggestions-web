@@ -17,7 +17,12 @@ export const LogoutLink: React.FunctionComponent<LogoutLinkProps> = ({
       {t => (
         <>
           {t("navBar.logout")} &nbsp;
-          <img src={user.avatar.url} height="24px" width="24px" />
+          <img
+            src={user.picture.medium}
+            height="24px"
+            width="24px"
+            alt={user.name}
+          />
         </>
       )}
     </NamespacesConsumer>

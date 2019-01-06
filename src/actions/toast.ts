@@ -17,7 +17,7 @@ type HideAction = Action<ToastActionType.Hide, Toast>;
 
 type ThunkResult = ThunkAction<void, AuthState, undefined, ToastActions>;
 
-const ShowToast = (payload: Toast): ShowAction => ({
+export const ShowToast = (payload: Toast): ShowAction => ({
   type: ToastActionType.Show,
   payload,
 });
