@@ -87,9 +87,3 @@ export type SupportSuggestionActions =
   | SupportSuggestionPendingAction
   | SupportSuggestionOkAction
   | SupportSuggestionErrorAction;
-
-/**
- TODO change 'Support' button state
- TODO tests
- TODO toasts - where it should be triggered? directly when error comes? some global-reducer for errors?
- */

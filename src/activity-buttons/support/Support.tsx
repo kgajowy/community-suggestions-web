@@ -45,8 +45,10 @@ export class Support extends React.Component<Props> {
       ? t("suggestion.supported")
       : t("suggestion.support");
 
+    const action = alreadySupported ? this.unsupport : this.support;
+
     return (
-      <SupportButton onClick={this.support} pending={pending}>
+      <SupportButton onClick={action} pending={pending}>
         {buttonText}
       </SupportButton>
     );
@@ -58,6 +60,10 @@ export class Support extends React.Component<Props> {
     } else {
       this.props.support(this.props.suggestion);
     }
+  };
+
+  private unsupport = () => {
+    this.props.showToast(`Not implemented yet.`);
   };
 }
 

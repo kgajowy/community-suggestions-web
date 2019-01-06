@@ -25,7 +25,6 @@ type LogInErrorAction = Action<NavigationActionTypes.LogInError, any>;
 type LogOutAction = Action<NavigationActionTypes.LogOut, null>;
 
 type ThunkResult = ThunkAction<void, AuthState, undefined, AuthActions>;
-// TODO logIn resets not its own state; i.e. is sent as well to SuggestionState ?
 export const LogIn = (loginData: LoginDto): ThunkResult => {
   console.log(`Log In`, loginData);
   return dispatch => {
