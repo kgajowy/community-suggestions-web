@@ -13,7 +13,7 @@ const B = styled(Button)`
   min-width: 300px;
 `;
 
-const Loader = styled(Spinner)`
+export const Loader = styled(Spinner)`
   height: 1rem;
 `;
 
