@@ -27,7 +27,7 @@ type DispatchProps = Dispatches & ToastDispatchProps;
 
 interface StateProps {
   loggedIn: boolean;
-  currentUser: User;
+  currentUser: User | null;
   pending: boolean;
 }
 
