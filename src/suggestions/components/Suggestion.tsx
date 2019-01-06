@@ -1,6 +1,6 @@
 import * as React from "react";
 import { WithNamespaces, withNamespaces } from "react-i18next";
-import Support from "../../activity-buttons/support/Support";
+import Support from "../../activity-buttons/support/SupportController";
 import { Avatar } from "../../people/Avatar";
 import { Button } from "../../shared/components/Button";
 import { default as SuggestionInterface } from "../../shared/interfaces/suggestion";

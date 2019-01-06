@@ -62,8 +62,8 @@
   - [ ] Show Toast when preforming denied operation (voting down own suggestion)
   - [ ] API
 
-- [ ] Support/Leave Suggestion (Donate/Join/Attend)
-  - [ ] View Components - Support / Leave
+- [ ] SupportController/Leave Suggestion (Donate/Join/Attend)
+  - [ ] View Components - SupportController / Leave
   - [ ] Controller
   - [ ] Show Toast when preforming denied operation (not logged)
   - [ ] Show Toast when preforming denied operation (cannot leave own)
